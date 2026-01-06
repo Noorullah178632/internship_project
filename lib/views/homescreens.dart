@@ -11,6 +11,7 @@ class _HomescreensState extends State<Homescreens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFF),
       appBar: AppBar(
         toolbarHeight: 62,
         backgroundColor: Colors.green,
@@ -45,12 +46,15 @@ class _HomescreensState extends State<Homescreens> {
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
+                    fontSize: 20,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
             //search and chatbot icons
             Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.search, size: 24, color: Colors.white),
                 SizedBox(width: 10),
