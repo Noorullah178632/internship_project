@@ -1,5 +1,5 @@
 import 'package:first_app/view_models/bottom_view_nav.dart';
-import 'package:first_app/view_models/drawer_view_models.dart';
+import 'package:first_app/views/homescreens/containerWidget.dart';
 import 'package:first_app/views/homescreens/drawer_view_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -13,9 +13,6 @@ class Homescreens extends StatefulWidget {
 }
 
 class _HomescreensState extends State<Homescreens> {
-  //make a instance for open drawer
-  final DrawerViewModels drawerViewModels = DrawerViewModels();
-
   @override
   Widget build(BuildContext context) {
     return Consumer<BottomNav>(
@@ -83,11 +80,8 @@ class _HomescreensState extends State<Homescreens> {
 
           backgroundColor: Colors.white,
 
-          body: Container(
-            child: Text(
-              "me and my brother",
-              style: TextStyle(color: Colors.black),
-            ),
+          body: SingleChildScrollView(
+            child: Column(children: [Containerwidget(), Containerwidget()]),
           ),
           //bottom Navigation Bar
           bottomNavigationBar: BottomNavigationBar(

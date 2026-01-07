@@ -1,7 +1,6 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/Routes/routes_navigation.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
-import 'package:first_app/view_models/drawer_view_models.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,10 +8,7 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => BottomNav()),
-        ChangeNotifierProvider(create: (cu) => DrawerViewModels()),
-      ],
+      providers: [ChangeNotifierProvider(create: (_) => BottomNav())],
       child: MyApp(),
     ),
   );
