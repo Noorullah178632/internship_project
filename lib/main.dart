@@ -1,6 +1,7 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/Routes/routes_navigation.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
+import 'package:first_app/view_models/switch_view_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,10 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => BottomNav())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => BottomNav()),
+        ChangeNotifierProvider(create: (_) => SwitchViewModel()),
+      ],
       child: MyApp(),
     ),
   );
@@ -36,3 +40,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+//i will start my work from the Drawer screen present in the View section 

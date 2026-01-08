@@ -37,9 +37,8 @@ class _HomescreensState extends State<Homescreens> {
                       onPressed: () {},
                       icon: Image.asset(
                         "assets/images/icons/location.png",
-                        width: 20,
-                        height: 20,
-                        color: Colors.white,
+                        width: 24,
+                        height: 24,
                       ),
                     ),
                   ],
