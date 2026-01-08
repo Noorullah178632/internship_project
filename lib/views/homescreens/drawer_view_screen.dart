@@ -11,14 +11,25 @@ class _MydrawerState extends State<Mydrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Color(0XFFFFFFFF),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          Container(
+            width: double.infinity,
+            height: 36,
             decoration: BoxDecoration(color: Colors.green),
-            child: Text(
-              'Options',
-              style: TextStyle(color: Colors.white, fontSize: 24),
+            child: Center(
+              child: Text(
+                "Options",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
+                  height: 1.5,
+                  letterSpacing: 1,
+                  color: Color(0XFFFFFFFF),
+                ),
+              ),
             ),
           ),
           ListTile(

@@ -1,7 +1,7 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/Routes/routes_navigation.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +29,9 @@ class MyApp extends StatelessWidget {
 
       title: 'Flutter Project',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //set the theme of the text for the entire app
+        textTheme: GoogleFonts.poppinsTextTheme(),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
     );
   }

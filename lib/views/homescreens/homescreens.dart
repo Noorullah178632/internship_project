@@ -1,6 +1,7 @@
 import 'package:first_app/view_models/bottom_view_nav.dart';
-import 'package:first_app/views/homescreens/containerWidget.dart';
+
 import 'package:first_app/views/homescreens/drawer_view_screen.dart';
+import 'package:first_app/views/widgets/containerWidget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -81,7 +82,15 @@ class _HomescreensState extends State<Homescreens> {
           backgroundColor: Colors.white,
 
           body: SingleChildScrollView(
-            child: Column(children: [Containerwidget(), Containerwidget()]),
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                Containerwidget(),
+                Containerwidget(),
+                Containerwidget(),
+                Containerwidget(),
+              ],
+            ),
           ),
           //bottom Navigation Bar
           bottomNavigationBar: BottomNavigationBar(
