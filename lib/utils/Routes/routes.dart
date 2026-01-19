@@ -1,5 +1,5 @@
 //present all the screens or the routes of the app
-class Routes {
+class RouteName {
   static const String home = "/home";
   static const String work = "/work";
   static const String chatting = "/chatting";

@@ -1,7 +1,8 @@
-import 'dart:js_interop';
-
 import 'package:first_app/utils/Appcolors.dart';
+import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
+import 'package:first_app/views/DraweScreens/drawer_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -153,6 +154,84 @@ class _MydrawerState extends State<Mydrawer> {
                 ),
               );
             },
+          ),
+          SizedBox(height: 20),
+          CustomizeContainer(
+            customizeText: "Language: English",
+            customizeImage: "assets/images/icons/Language.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Chat to AI",
+            customizeImage: "assets/images/icons/chat_to_ai.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Crisis Lines",
+            customizeImage: "assets/images/icons/phone.png",
+            routeName: RouteName.crisisLine,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "My Favorites",
+            customizeImage: "assets/images/icons/star2.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Offline Data",
+            customizeImage: "assets/images/icons/disconnect.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "About Amdad",
+            customizeImage: "assets/images/icons/About.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Show Tutorial",
+            customizeImage: "assets/images/icons/question-mark.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Give Feedback",
+            customizeImage: "assets/images/icons/feedback.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Volunteer",
+            customizeImage: "assets/images/icons/Volunteer.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Donate",
+            customizeImage: "assets/images/icons/Donate.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Terms of Use",
+            customizeImage: "assets/images/icons/terms.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Privacy Policy",
+            customizeImage: "assets/images/icons/privacy policy.png",
+            routeName: RouteName.chatting,
+          ),
+          SizedBox(height: 15),
+          CustomizeContainer(
+            customizeText: "Login",
+            customizeImage: "assets/images/icons/login.png",
+            routeName: RouteName.chatting,
           ),
         ],
       ),

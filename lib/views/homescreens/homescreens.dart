@@ -1,6 +1,6 @@
 import 'package:first_app/view_models/bottom_view_nav.dart';
 
-import 'package:first_app/views/homescreens/drawer_view_screen.dart';
+import 'package:first_app/views/DraweScreens/drawer_view_screen.dart';
 import 'package:first_app/views/widgets/containerWidget.dart';
 
 import 'package:flutter/material.dart';

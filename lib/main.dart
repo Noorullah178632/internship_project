@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //try to set the routing
-      initialRoute: Routes.home,
+      initialRoute: RouteName.home,
 
       onGenerateRoute: AppRoutes.RoutesNavigation,
       debugShowCheckedModeBanner: false,
