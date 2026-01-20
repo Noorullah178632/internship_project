@@ -22,55 +22,53 @@ class CrisisWidget extends StatelessWidget {
       child: Column(
         children: [
           //1st container
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-                border: Border(
-                  bottom: BorderSide(color: Color(0xFFAEAEAE), width: 0.5),
-                ),
-                color: Color(0xFFC8E6C9),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
               ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 5, right: 5),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        services.title,
-                        style: TextStyle(
-                          fontSize: 14,
-                          height: 1,
-                          letterSpacing: 0.75,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        ),
+              border: Border(
+                bottom: BorderSide(color: Color(0xFFAEAEAE), width: 0.5),
+              ),
+              color: Color(0xFFC8E6C9),
+            ),
+            child: Padding(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      services.title,
+                      style: TextStyle(
+                        fontSize: 14,
+                        height: 1,
+                        letterSpacing: 0.75,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
                       ),
                     ),
+                  ),
 
-                    IconButton(
-                      onPressed: () async {
-                        final Uri url = Uri.parse("https://www.edhi.org/");
-                        if (!await launchUrl(url)) {
-                          throw Exception("Could not launch $url");
-                        }
-                      },
-                      icon: Image(
-                        image: AssetImage("assets/images/icons/website.png"),
-                        width: 22,
-                        height: 23,
-                      ),
+                  IconButton(
+                    onPressed: () async {
+                      final Uri url = Uri.parse("https://www.edhi.org/");
+                      if (!await launchUrl(url)) {
+                        throw Exception("Could not launch $url");
+                      }
+                    },
+                    icon: Image(
+                      image: AssetImage("assets/images/icons/website.png"),
+                      width: 22,
+                      height: 23,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
           //2nd container
-          Expanded(
+          Flexible(
             child: Container(
               decoration: BoxDecoration(
                 color: Color(0xFFC8E6C9),
@@ -93,7 +91,7 @@ class CrisisWidget extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 12,
-                      height: 0.8,
+
                       letterSpacing: 0.75,
                       color: Color(0xFF393939),
                     ),
@@ -117,7 +115,7 @@ class CrisisWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
-                    height: 1.2,
+                    height: 1,
                     letterSpacing: 0.75,
 
                     color: Color(0xFF393939),
@@ -135,6 +133,10 @@ class CrisisWidget extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Color(0xFFC8E6C9),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
                     border: Border(
                       bottom: BorderSide(width: 0.5, color: Color(0xFFAEAEAE)),
                     ),

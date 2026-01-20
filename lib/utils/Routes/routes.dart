@@ -10,4 +10,6 @@ class RouteName {
   static const String showTutorial = "/showTutorial";
   static const String giveFeedBack = "/giveFeedBack";
   static const String login = "/login";
+  static const String splashScreen = "/splashScreen";
+  static const String boardingScreen = "/boardingScreen";
 }

@@ -1,6 +1,8 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/Routes/routes_navigation.dart';
+import 'package:first_app/view_models/boarding_view_model.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
+import 'package:first_app/view_models/splash_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,8 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => BottomNav()),
         ChangeNotifierProvider(create: (_) => SwitchViewModel()),
+        ChangeNotifierProvider(create: (_) => SplashViewModel()),
+        ChangeNotifierProvider(create: (_) => BoardingViewModel()),
       ],
       child: MyApp(),
     ),
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //try to set the routing
-      initialRoute: RouteName.home,
+      initialRoute: RouteName.splashScreen,
 
       onGenerateRoute: AppRoutes.RoutesNavigation,
       debugShowCheckedModeBanner: false,

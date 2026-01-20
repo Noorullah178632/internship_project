@@ -1,4 +1,4 @@
-import 'package:first_app/utils/Appcolors.dart';
+import 'package:first_app/utils/appcolors.dart';
 import 'package:flutter/material.dart';
 
 class CustomizeContainer extends StatelessWidget {

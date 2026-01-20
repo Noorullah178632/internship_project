@@ -1,5 +1,6 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/views/about_view.dart';
+import 'package:first_app/views/Boarding_pages/boarding_view.dart';
 import 'package:first_app/views/chatting_view.dart';
 import 'package:first_app/views/CrisisLines/crisis_line_view.dart';
 
@@ -8,6 +9,7 @@ import 'package:first_app/views/homescreens/homescreens.dart';
 import 'package:first_app/views/login_view.dart';
 import 'package:first_app/views/offline_data_view.dart';
 import 'package:first_app/views/show_tutorial_view.dart';
+import 'package:first_app/views/splash_view.dart';
 
 import 'package:flutter/material.dart';
 
@@ -39,6 +41,11 @@ class AppRoutes {
       case RouteName.login:
         return MaterialPageRoute(builder: (_) => LoginView());
 
+      case RouteName.boardingScreen:
+        return MaterialPageRoute(builder: (_) => BoardingView());
+
+      case RouteName.splashScreen:
+        return MaterialPageRoute(builder: (_) => SplashView());
       default:
         return MaterialPageRoute(
           builder: (_) =>
