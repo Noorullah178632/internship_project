@@ -8,7 +8,9 @@ import 'package:first_app/views/give_feedback_view.dart';
 import 'package:first_app/views/homescreens/homescreens.dart';
 import 'package:first_app/views/login_view.dart';
 import 'package:first_app/views/offline_data_view.dart';
+import 'package:first_app/views/reset_password_view.dart';
 import 'package:first_app/views/show_tutorial_view.dart';
+import 'package:first_app/views/signup_view.dart';
 import 'package:first_app/views/splash_view.dart';
 
 import 'package:flutter/material.dart';
@@ -22,6 +24,12 @@ class AppRoutes {
 
       case RouteName.chatting:
         return MaterialPageRoute(builder: (_) => ChattingView());
+
+      case RouteName.signup:
+        return MaterialPageRoute(builder: (_) => SignupView());
+
+      case RouteName.resetPassword:
+        return MaterialPageRoute(builder: (_) => ResetPasswordView());
 
       case RouteName.crisisLine:
         return MaterialPageRoute(builder: (_) => CrisisLineView());

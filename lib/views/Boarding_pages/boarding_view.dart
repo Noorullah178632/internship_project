@@ -37,6 +37,13 @@ class _BoardingViewState extends State<BoardingView> {
               child: Padding(
                 padding: EdgeInsets.only(bottom: 50),
                 child: SmoothPageIndicator(
+                  onDotClicked: (index) {
+                    viewModel.controller.animateToPage(
+                      index,
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeInOut,
+                    );
+                  },
                   controller: viewModel.controller,
                   count: 3,
                   effect: CustomizableEffect(

@@ -1,4 +1,6 @@
+import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/appcolors.dart';
+import 'package:first_app/view_models/view_functions_models.dart';
 import 'package:flutter/material.dart';
 
 class BoardingView3 extends StatelessWidget {
@@ -68,42 +70,52 @@ class BoardingView3 extends StatelessWidget {
           ),
         ),
         SizedBox(height: 20),
-        Container(
-          width: 340,
-          height: 56,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Color(0XFFC8E6C9),
-          ),
-          child: Center(
-            child: Text(
-              "I Agree",
-              style: TextStyle(
-                fontSize: 20,
-                height: 1.5,
-                fontWeight: FontWeight.w700,
-                color: Color(0XFF2E7D32),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, RouteName.login);
+          },
+          child: Container(
+            width: 340,
+            height: 56,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color(0XFFC8E6C9),
+            ),
+            child: Center(
+              child: Text(
+                "I Agree",
+                style: TextStyle(
+                  fontSize: 20,
+                  height: 1.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0XFF2E7D32),
+                ),
               ),
             ),
           ),
         ),
         SizedBox(height: 20),
-        Container(
-          width: 340,
-          height: 56,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(width: 2, color: Color(0XFFC8E6C9)),
-          ),
-          child: Center(
-            child: Text(
-              "Cancel",
-              style: TextStyle(
-                fontSize: 20,
-                letterSpacing: 1,
-                height: 1.5,
-                fontWeight: FontWeight.w700,
-                color: Colors.black,
+        GestureDetector(
+          onTap: () {
+            ViewFunctionsModels.showButtomSheet(context);
+          },
+          child: Container(
+            width: 340,
+            height: 56,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(width: 2, color: Color(0XFFC8E6C9)),
+            ),
+            child: Center(
+              child: Text(
+                "Cancel",
+                style: TextStyle(
+                  fontSize: 20,
+                  letterSpacing: 1,
+                  height: 1.5,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
