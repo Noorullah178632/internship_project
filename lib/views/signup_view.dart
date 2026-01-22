@@ -12,7 +12,24 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
+  //global key for formstate
   final _formKey = GlobalKey<FormState>();
+  //controllers for textfield
+  TextEditingController companyController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  //dispose method for controller
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    companyController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -75,6 +92,7 @@ class _SignupViewState extends State<SignupView> {
                   children: [
                     //Community service
                     TextFormField(
+                      controller: companyController,
                       textInputAction: TextInputAction.newline,
                       decoration: InputDecoration(
                         //for borders
@@ -132,6 +150,7 @@ class _SignupViewState extends State<SignupView> {
                     ),
                     //PHONE section
                     TextFormField(
+                      controller: phoneController,
                       textInputAction: TextInputAction.newline,
                       keyboardType: TextInputType.number,
                       //icon at last
@@ -200,6 +219,7 @@ class _SignupViewState extends State<SignupView> {
                     ),
                     //emailField
                     TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         //for borders
                         //   1:
@@ -263,6 +283,7 @@ class _SignupViewState extends State<SignupView> {
                     Consumer<NormalModel>(
                       builder: (build, mv, child) {
                         return TextFormField(
+                          controller: passwordController,
                           //for text security
                           obscureText: mv.isvisible,
 

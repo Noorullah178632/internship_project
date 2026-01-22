@@ -9,10 +9,14 @@ class ResetPasswordView extends StatefulWidget {
 }
 
 class _ResetPasswordViewState extends State<ResetPasswordView> {
+  //global key for formstate
   final _formkey = GlobalKey<FormState>();
+  //controllers for textfield
+  TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Appcolors.whiteColor,
@@ -47,6 +51,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 children: [
                   //emailField
                   TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       //for borders
                       //   1:
@@ -105,6 +110,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                       if (username.length < 8) {
                         return "User name must be atleast 8 characters";
                       }
+                      return null;
                     },
                   ),
                 ],

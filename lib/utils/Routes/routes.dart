@@ -14,4 +14,5 @@ class RouteName {
   static const String boardingScreen = "/boardingScreen";
   static const String signup = "/signupScreen";
   static const String resetPassword = "/resetPassword";
+  static const String communityCare = "/communityCare";
 }

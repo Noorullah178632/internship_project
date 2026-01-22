@@ -10,7 +10,20 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  //global key for formstate
   final _formKey = GlobalKey<FormState>();
+  //controllers for textfield
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  //dispose method for form textfield
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -71,8 +84,7 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   //emailField
                   TextFormField(
-                    focusNode: FocusNode(),
-                    textInputAction: TextInputAction.newline,
+                    controller: emailController,
                     decoration: InputDecoration(
                       //for borders
                       //   1:
@@ -136,8 +148,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   //password Field
                   TextFormField(
-                    focusNode: FocusNode(),
-                    textInputAction: TextInputAction.newline,
+                    controller: passwordController,
                     //for text security
                     obscureText: true,
 

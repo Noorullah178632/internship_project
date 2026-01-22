@@ -5,6 +5,7 @@ import 'package:first_app/view_models/bottom_view_nav.dart';
 import 'package:first_app/view_models/normal_model.dart';
 import 'package:first_app/view_models/splash_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,19 +31,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      //try to set the routing
-      initialRoute: RouteName.login,
+    return ScreenUtilInit(
+      designSize: Size(412, 916),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          //try to set the routing
+          initialRoute: RouteName.about,
 
-      onGenerateRoute: AppRoutes.RoutesNavigation,
-      debugShowCheckedModeBanner: false,
+          onGenerateRoute: AppRoutes.RoutesNavigation,
+          debugShowCheckedModeBanner: false,
 
-      title: 'Flutter Project',
-      theme: ThemeData(
-        //set the theme of the text for the entire app
-        textTheme: GoogleFonts.poppinsTextTheme(),
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+          title: 'Flutter Project',
+          theme: ThemeData(
+            //set the theme of the text for the entire app
+            textTheme: GoogleFonts.poppinsTextTheme(),
+            // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          ),
+        );
+      },
     );
   }
 }

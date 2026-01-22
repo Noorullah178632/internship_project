@@ -3,6 +3,8 @@ import 'package:first_app/views/about_view.dart';
 import 'package:first_app/views/Boarding_pages/boarding_view.dart';
 import 'package:first_app/views/chatting_view.dart';
 import 'package:first_app/views/CrisisLines/crisis_line_view.dart';
+import 'package:first_app/views/community_screens/community_view.dart';
+import 'package:first_app/views/favorite_screens/myfavorite_view.dart';
 
 import 'package:first_app/views/give_feedback_view.dart';
 import 'package:first_app/views/homescreens/homescreens.dart';
@@ -51,6 +53,10 @@ class AppRoutes {
 
       case RouteName.boardingScreen:
         return MaterialPageRoute(builder: (_) => BoardingView());
+      case RouteName.myFavorite:
+        return MaterialPageRoute(builder: (_) => MyfavoriteView());
+      case RouteName.communityCare:
+        return MaterialPageRoute(builder: (_) => CommunityView());
 
       case RouteName.splashScreen:
         return MaterialPageRoute(builder: (_) => SplashView());
