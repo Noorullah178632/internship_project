@@ -21,63 +21,57 @@ class _HomescreensState extends State<Homescreens> {
         return Scaffold(
           //drawer
           drawer: Mydrawer(),
-          //appbar
-          appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.white),
-            toolbarHeight: 62,
-            backgroundColor: Colors.green,
 
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          appBar: AppBar(
+            backgroundColor: Colors.green,
+            toolbarHeight: 62,
+            iconTheme: const IconThemeData(color: Colors.white),
+            // 1. Increase width to fit Drawer icon + Location icon
+            leadingWidth: 100,
+            leading: Row(
               children: [
-                //drawer and location icons
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(
-                        "assets/images/icons/location.png",
-                        width: 24,
-                        height: 24,
-                      ),
-                    ),
-                  ],
-                ),
-                //Name title
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      "Amdad",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                // 2. Manual Drawer Button
+                Builder(
+                  builder: (context) => IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-                //search and chatbot icons
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.search, size: 24, color: Colors.white),
-                    SizedBox(width: 10),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(
-                        "assets/images/icons/chatbot.png",
-                        width: 20,
-                        height: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                // 3. Location Icon
+                Image.asset(
+                  "assets/images/icons/location.png",
+                  width: 24,
+                  height: 24,
+                  color: Colors.white, // Ensures it matches theme
                 ),
               ],
             ),
+            // 4. Centered Title
+            title: const Text(
+              "Amdad",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 20,
+              ),
+            ),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.search, size: 24),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset(
+                  "assets/images/icons/chatbot.png",
+                  width: 20,
+                  height: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
-
           backgroundColor: Colors.white,
 
           body: SingleChildScrollView(

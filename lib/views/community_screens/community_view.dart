@@ -1,5 +1,7 @@
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/views/community_screens/community_widget.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -136,18 +138,39 @@ class _CommunityViewState extends State<CommunityView> {
                 ],
               ),
             ),
+
             // 3rd part : Container for google Maps
             Container(
               margin: EdgeInsets.only(top: 20),
+
               width: screenWidth,
+
               height: screenHeight * 0.25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
               child: GoogleMap(
+                //move the map
+                scrollGesturesEnabled: true,
+                zoomGesturesEnabled: true,
+                fortyFiveDegreeImageryEnabled: true,
                 initialCameraPosition: CameraPosition(
                   target: LatLng(31.5204, 74.3587),
+                  zoom: 25,
                 ),
+                //for gesture touch
+                gestureRecognizers: {
+                  Factory<OneSequenceGestureRecognizer>(
+                    () => EagerGestureRecognizer(),
+                  ),
+                },
+                markers: {
+                  Marker(
+                    markerId: MarkerId("1"),
+                    position: LatLng(31.5204, 74.3587),
+                    infoWindow: InfoWindow(title: "Lahore"),
+                  ),
+                },
               ),
             ),
             //4th part: container with schedule information
@@ -261,7 +284,7 @@ class _CommunityViewState extends State<CommunityView> {
             //5 part : button
             Center(
               child: Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 20, bottom: 20),
                 width: screenWidth * 0.7,
                 height: screenHeight * 0.05,
                 decoration: BoxDecoration(

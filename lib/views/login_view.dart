@@ -97,7 +97,7 @@ class _LoginViewState extends State<LoginView> {
                       // 2:
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          width: 0.5,
+                          width: 1,
                           color: Color(0XFFAEAEAE),
                         ),
                       ),
@@ -169,7 +169,7 @@ class _LoginViewState extends State<LoginView> {
                       // 2:
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          width: 0.5,
+                          width: 1,
                           color: Color(0XFFAEAEAE),
                         ),
                       ),
