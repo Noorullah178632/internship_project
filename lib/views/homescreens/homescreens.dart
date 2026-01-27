@@ -1,3 +1,4 @@
+import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
 
 import 'package:first_app/views/DraweScreens/drawer_view_screen.dart';
@@ -62,7 +63,9 @@ class _HomescreensState extends State<Homescreens> {
                 icon: const Icon(Icons.search, size: 24),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, RouteName.chatting);
+                },
                 icon: Image.asset(
                   "assets/images/icons/chatbot.png",
                   width: 20,
