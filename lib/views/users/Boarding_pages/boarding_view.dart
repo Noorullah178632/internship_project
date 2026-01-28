@@ -1,8 +1,8 @@
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/view_models/boarding_view_model.dart';
-import 'package:first_app/views/Boarding_pages/widgets/boarding_view1.dart';
-import 'package:first_app/views/Boarding_pages/widgets/boarding_view2.dart';
-import 'package:first_app/views/Boarding_pages/widgets/boarding_view3.dart';
+import 'package:first_app/views/users/Boarding_pages/widgets/boarding_view1.dart';
+import 'package:first_app/views/users/Boarding_pages/widgets/boarding_view2.dart';
+import 'package:first_app/views/users/Boarding_pages/widgets/boarding_view3.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

@@ -1,5 +1,5 @@
 import 'package:first_app/utils/appcolors.dart';
-import 'package:first_app/views/community_screens/community_widget.dart';
+import 'package:first_app/views/users/community_screens/community_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 

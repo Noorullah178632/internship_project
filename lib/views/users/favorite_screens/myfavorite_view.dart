@@ -1,5 +1,5 @@
 import 'package:first_app/utils/appcolors.dart';
-import 'package:first_app/views/favorite_screens/favorite_view_widget.dart';
+import 'package:first_app/views/users/favorite_screens/favorite_view_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyfavoriteView extends StatefulWidget {

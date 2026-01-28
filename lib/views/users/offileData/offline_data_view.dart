@@ -1,5 +1,5 @@
 import 'package:first_app/utils/appcolors.dart';
-import 'package:first_app/views/offileData/widgets/offlineWidget.dart';
+import 'package:first_app/views/users/offileData/widgets/offlineWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

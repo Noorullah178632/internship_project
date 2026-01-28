@@ -1,7 +1,7 @@
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
-import 'package:first_app/views/DraweScreens/drawer_widget.dart';
+import 'package:first_app/views/users/DraweScreens/drawer_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

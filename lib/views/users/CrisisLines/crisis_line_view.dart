@@ -1,6 +1,6 @@
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/view_models/crisis_view_model.dart';
-import 'package:first_app/views/CrisisLines/crisis_widget.dart';
+import 'package:first_app/views/users/CrisisLines/crisis_widget.dart';
 import 'package:flutter/material.dart';
 
 class CrisisLineView extends StatefulWidget {
