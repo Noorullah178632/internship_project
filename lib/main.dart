@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           //try to set the routing
-          initialRoute: RouteName.adminDashboard,
+          initialRoute: RouteName.dummyPage,
 
           onGenerateRoute: AppRoutes.RoutesNavigation,
           debugShowCheckedModeBanner: false,

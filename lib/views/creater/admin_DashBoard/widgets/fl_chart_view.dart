@@ -14,7 +14,7 @@ class FlChartView extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => LinechartViewModel(),
       child: Consumer<LinechartViewModel>(
-        builder: (context, chat_vm, child) {
+        builder: (context, chatVm, child) {
           return Container(
             width: screenWidth,
             height: screenHeight * 0.4,
@@ -53,7 +53,7 @@ class FlChartView extends StatelessWidget {
                       lineBarsData: [
                         LineChartBarData(
                           //points on the graph
-                          spots: chat_vm.getChartData(),
+                          spots: chatVm.getChartData(),
                           isCurved: true, //make line smooth
                           barWidth: 5,
                           color: Color(0XFFA5EFB5),
@@ -74,8 +74,8 @@ class FlChartView extends StatelessWidget {
                       .map(
                         (p) => _buildContainerButton(
                           p,
-                          chat_vm.period == p,
-                          () => chat_vm.selectedPeriod(p),
+                          chatVm.period == p,
+                          () => chatVm.selectedPeriod(p),
                         ),
                       )
                       .toList(),

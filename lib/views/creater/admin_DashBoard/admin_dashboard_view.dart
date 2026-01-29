@@ -1,6 +1,7 @@
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/views/creater/Drawer/drawer_view.dart';
-import 'package:first_app/views/creater/admin_DashBoard/fl_chart_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/fl_chart_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/stacked_bar_chart_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -189,7 +190,11 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
               SizedBox(height: screenHeight * 0.03),
               //3rd part
               FlChartView(),
-              //1st part
+              SizedBox(height: screenHeight * 0.03),
+              //4th part
+              StackedBarChartView(),
+
+              //5th part
             ],
           ),
         ),
