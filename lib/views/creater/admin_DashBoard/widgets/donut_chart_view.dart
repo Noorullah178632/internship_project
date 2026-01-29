@@ -57,33 +57,7 @@ class DonutChartView extends StatelessWidget {
                     color: Color(0XFF505050),
                   ),
                 ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      height: screenHeight * 0.4,
-                      child: PieChart(
-                        PieChartData(centerSpaceRadius: 50, sections: sections),
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Text(
-                          "Total",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        Text(
-                          "120",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+
                 _buildLegend(donutVM),
               ],
             ),
