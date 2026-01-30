@@ -89,7 +89,7 @@ class StackedBarChartView extends StatelessWidget {
                         leftTitles: AxisTitles(
                           sideTitles: SideTitles(
                             showTitles: true,
-                            reservedSize: 40,
+                            reservedSize: 40, //space between text and graph
                             //to design the text
                             getTitlesWidget: (value, meta) {
                               return Text(

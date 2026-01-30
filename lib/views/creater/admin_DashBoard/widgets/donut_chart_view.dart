@@ -5,29 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DonutChartView extends StatelessWidget {
-  final sections = [
-    PieChartSectionData(
-      value: 40, // size of this slice
-      color: Colors.blue, // slice color
-      title: "40%", // text on the slice
-      radius: 50, // thickness of slice
-    ),
-    PieChartSectionData(
-      value: 30,
-      color: Colors.green,
-      title: "30%",
-      radius: 50,
-    ),
-    PieChartSectionData(value: 20, color: Colors.red, title: "20%", radius: 50),
-    PieChartSectionData(
-      value: 10,
-      color: Colors.orange,
-      title: "10%",
-      radius: 50,
-    ),
-  ];
-
-  DonutChartView({super.key});
+  const DonutChartView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +24,7 @@ class DonutChartView extends StatelessWidget {
               color: Colors.white,
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   "Approval Workflow Stats",
@@ -57,7 +36,49 @@ class DonutChartView extends StatelessWidget {
                     color: Color(0XFF505050),
                   ),
                 ),
+                Spacer(),
+                Expanded(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      PieChart(
+                        PieChartData(
+                          sectionsSpace: 3,
+                          centerSpaceRadius: 80,
+                          startDegreeOffset: -90,
+                          pieTouchData: PieTouchData(
+                            enabled: true,
+                            touchCallback: (event, response) {
+                              if (response != null &&
+                                  response.touchedSection != null) {
+                                donutVM.setTouchedIndex(
+                                  response.touchedSection!.touchedSectionIndex,
+                                );
+                              }
+                            },
+                          ),
+                          sections: buildDonutChartSection(donutVM),
+                        ),
+                      ),
 
+                      // Center Text
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            donutVM.totalValue.toString(),
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Text("(100%)"),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer(),
                 _buildLegend(donutVM),
               ],
             ),
@@ -67,6 +88,40 @@ class DonutChartView extends StatelessWidget {
     );
   }
 
+  //function for sections
+  List<PieChartSectionData> buildDonutChartSection(DonutChartViewModel vm) {
+    return List.generate(vm.chartData.length, (index) {
+      final data = vm.chartData[index];
+      final isSelected =
+          index == vm.selectedIndex; //it check that it is selected or not
+      return PieChartSectionData(
+        value: data.value.toDouble(),
+        radius: isSelected ? 70 : 60,
+
+        color: vm.getColorForCategory(data.category),
+        title: "${data.value}\n (${data.percentage.toStringAsFixed(0)}%)",
+        titleStyle: GoogleFonts.poppins(
+          color: Colors.white,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+        ),
+      );
+    });
+  }
+
+  //  PieChartSectionData(
+  //       value: 40,
+  //       radius: 50,
+  //       color: Colors.blue,
+  //       title:
+  //          "this is me "
+  //       titleStyle: const TextStyle(
+  //         color: Colors.white,
+  //         fontSize: 12,
+  //         fontWeight: FontWeight.bold,
+  //       ),
+  //     );
+  //widget for legned
   Widget _buildLegend(DonutChartViewModel viewmodel) {
     return Wrap(
       spacing: 20,
