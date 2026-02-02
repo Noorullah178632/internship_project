@@ -1,10 +1,14 @@
 import 'package:first_app/utils/appcolors.dart';
+import 'package:first_app/view_models/barChart_view_model.dart';
 import 'package:first_app/views/creater/Drawer/drawer_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/bar_chart_view2.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/donut_chart_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/heat_map_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/line_chart_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/stacked_bar_chart_view.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AdminDashboardView extends StatefulWidget {
@@ -70,7 +74,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       "Welcome to the Admin Dashboard",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
-                        fontSize: 32,
+                        fontSize: 32.sp,
                         height: 1.5,
                         letterSpacing: 1,
                         color: Color(0XFF505050),
@@ -80,7 +84,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                     Text(
                       "Gain a comprehensive overview of your platform's activity and statistics. Quickly access pending verifications, flagged services, total services listed, verified NGOs/Providers, pending requests, and recent user reviews/flags",
                       style: GoogleFonts.poppins(
-                        fontSize: 12,
+                        fontSize: 12.sp,
                         height: 1.5,
                         letterSpacing: 0.75,
                         color: Color(0XFF393939),
@@ -99,7 +103,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                           "Explore Dashboard",
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w700,
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             height: 1.5,
                             letterSpacing: 1,
                             color: Colors.white,
@@ -112,7 +116,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       "Platform Activity",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
-                        fontSize: 32,
+                        fontSize: 32.sp,
                         height: 1.5,
                         letterSpacing: 1,
                         color: Color(0XFFA09D9A),
@@ -126,7 +130,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 width: screenWidth,
-                height: screenHeight * 0.7,
+                //  height: screenHeight * 0.7,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24),
                   color: Colors.white,
@@ -153,6 +157,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       text4: "+34 this week",
                       backgroundColor: Color(0XFFC7DCFF),
                     ),
+                    SizedBox(height: 10.h),
                     _buildStatCard(
                       imagePath: "assets/images/admin/dashboard/listing.png",
                       text1: "Active",
@@ -161,6 +166,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       text4: "Shelters,Food etc",
                       backgroundColor: Color(0XFFC8E6C9),
                     ),
+                    SizedBox(height: 10.h),
                     _buildStatCard(
                       imagePath: "assets/images/admin/dashboard/pending.png",
                       text1: "Listings",
@@ -169,6 +175,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       text4: "Needs admin review",
                       backgroundColor: Color(0XFFFFEEAC),
                     ),
+                    SizedBox(height: 10.h),
                     _buildStatCard(
                       imagePath: "assets/images/admin/dashboard/rating.png",
                       text1: "Average",
@@ -177,6 +184,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       text4: "Based on 215 reviews",
                       backgroundColor: Color(0XFFD2D2D2),
                     ),
+                    SizedBox(height: 10.h),
                     _buildStatCard(
                       imagePath: "assets/images/admin/dashboard/status.png",
                       text1: "System",
@@ -185,6 +193,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       text4: "No recent downtimes",
                       backgroundColor: Color(0XFFFFC7C7),
                     ),
+                    SizedBox(height: 10.h),
                   ],
                 ),
               ),
@@ -200,8 +209,13 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
               SizedBox(height: screenHeight * 0.03),
 
               //6th part
+              BarChartView2(),
+              SizedBox(height: screenHeight * 0.03),
 
               //7th part
+              HeatMapView(),
+
+              //8th part
             ],
           ),
         ),
@@ -242,7 +256,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                   Text(
                     text1,
                     style: GoogleFonts.poppins(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       height: 1.5,
                       letterSpacing: 1,
                       fontWeight: FontWeight.w700,
@@ -252,7 +266,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                   Text(
                     text2,
                     style: GoogleFonts.poppins(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       height: 1.5,
                       letterSpacing: 1,
                       fontWeight: FontWeight.w700,
@@ -268,7 +282,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 Text(
                   text3,
                   style: GoogleFonts.poppins(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w700,
                     height: 1.5,
                     letterSpacing: 1,
@@ -279,7 +293,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                   text4,
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w700,
-                    fontSize: 9,
+                    fontSize: 9.sp,
                     height: 2,
                     letterSpacing: 1,
                     color: Color(0XFF747474),

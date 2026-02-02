@@ -1,6 +1,7 @@
 import 'package:first_app/view_models/donut_chart_view_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -43,8 +44,8 @@ class DonutChartView extends StatelessWidget {
                     children: [
                       PieChart(
                         PieChartData(
-                          sectionsSpace: 3,
-                          centerSpaceRadius: 80,
+                          sectionsSpace: 3.r,
+                          centerSpaceRadius: 80.r,
                           startDegreeOffset: -90,
                           pieTouchData: PieTouchData(
                             enabled: true,
@@ -96,7 +97,7 @@ class DonutChartView extends StatelessWidget {
           index == vm.selectedIndex; //it check that it is selected or not
       return PieChartSectionData(
         value: data.value.toDouble(),
-        radius: isSelected ? 70 : 60,
+        radius: isSelected ? 70.r : 60.r,
 
         color: vm.getColorForCategory(data.category),
         title: "${data.value}\n (${data.percentage.toStringAsFixed(0)}%)",

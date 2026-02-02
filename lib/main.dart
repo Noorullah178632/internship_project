@@ -2,6 +2,7 @@ import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/Routes/routes_navigation.dart';
 import 'package:first_app/view_models/boarding_view_model.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
+import 'package:first_app/view_models/heat_map_view_model.dart';
 import 'package:first_app/view_models/normal_model.dart';
 import 'package:first_app/view_models/splash_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
@@ -19,6 +20,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => SplashViewModel()),
         ChangeNotifierProvider(create: (_) => NormalModel()),
         ChangeNotifierProvider(create: (_) => BoardingViewModel()),
+        ChangeNotifierProvider(create: (_) => HeatMapViewModel()),
       ],
       child: MyApp(),
     ),
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           //try to set the routing
-          initialRoute: RouteName.dummyPage,
+          initialRoute: RouteName.adminDashboard,
 
           onGenerateRoute: AppRoutes.RoutesNavigation,
           debugShowCheckedModeBanner: false,

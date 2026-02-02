@@ -80,7 +80,7 @@ class StackedBarChartView extends StatelessWidget {
                         rightTitles: AxisTitles(
                           sideTitles: SideTitles(showTitles: false),
                         ),
-                        //for left title
+                        //for top title
                         topTitles: AxisTitles(
                           sideTitles: SideTitles(showTitles: false),
                         ),
@@ -89,6 +89,7 @@ class StackedBarChartView extends StatelessWidget {
                         leftTitles: AxisTitles(
                           sideTitles: SideTitles(
                             showTitles: true,
+                            interval: 20,
                             reservedSize: 40, //space between text and graph
                             //to design the text
                             getTitlesWidget: (value, meta) {
@@ -153,13 +154,13 @@ class StackedBarChartView extends StatelessWidget {
 
         barRods: [
           BarChartRodData(
-            toY: item.total.toDouble(),
+            toY: item.total.toDouble(), //addition of all the values
             borderRadius: BorderRadius.circular(20),
             width: 10,
             rodStackItems: [
               BarChartRodStackItem(
-                0,
-                item.shelter.toDouble(),
+                0, //start of the bar
+                item.shelter.toDouble(), //end of the bar
                 Color(0XFF77ABFF),
               ),
               BarChartRodStackItem(

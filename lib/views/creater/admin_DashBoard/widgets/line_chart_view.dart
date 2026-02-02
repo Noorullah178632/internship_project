@@ -17,7 +17,7 @@ class FlChartView extends StatelessWidget {
         builder: (context, chatVm, child) {
           return Container(
             width: screenWidth,
-            height: screenHeight * 0.4,
+            //  height: screenHeight * 0.4,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
             decoration: BoxDecoration(
               color: Colors.white,
