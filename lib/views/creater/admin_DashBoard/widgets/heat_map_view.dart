@@ -107,6 +107,7 @@ class _HeatMapViewState extends State<HeatMapView> {
           children: [
             // Day labels
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: days
                   .map(
                     (day) => Container(
@@ -123,9 +124,9 @@ class _HeatMapViewState extends State<HeatMapView> {
             ),
 
             // Heatmap cells
-            Flexible(
+            Expanded(
               child: SizedBox(
-                height: 140,
+                height: 200.h,
                 child: GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -133,7 +134,7 @@ class _HeatMapViewState extends State<HeatMapView> {
                     mainAxisSpacing: 4,
                     crossAxisSpacing: 4,
                   ),
-                  itemCount: 112, // 7 rows × 16 cols
+                  itemCount: 365, // 7 rows × 16 cols
                   itemBuilder: (context, index) {
                     int row = index % 7;
                     int col = index ~/ 7;

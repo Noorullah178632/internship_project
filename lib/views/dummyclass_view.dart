@@ -1,4 +1,5 @@
 import 'package:first_app/views/creater/admin_DashBoard/widgets/heat_map_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/recent_activity_view.dart';
 import 'package:flutter/material.dart';
 
 class DummyclassView extends StatefulWidget {

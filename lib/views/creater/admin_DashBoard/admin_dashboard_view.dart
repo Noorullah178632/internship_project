@@ -5,6 +5,7 @@ import 'package:first_app/views/creater/admin_DashBoard/widgets/bar_chart_view2.
 import 'package:first_app/views/creater/admin_DashBoard/widgets/donut_chart_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/heat_map_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/line_chart_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/recent_activity_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/stacked_bar_chart_view.dart';
 
 import 'package:flutter/material.dart';
@@ -215,7 +216,9 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
               //7th part
               HeatMapView(),
 
+              SizedBox(height: screenHeight * 0.03),
               //8th part
+              RecentActivity(),
             ],
           ),
         ),
