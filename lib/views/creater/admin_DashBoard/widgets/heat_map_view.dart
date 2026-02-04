@@ -22,7 +22,7 @@ class _HeatMapViewState extends State<HeatMapView> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
+    // double screenHeight = MediaQuery.of(context).size.height;
     return Consumer<HeatMapViewModel>(
       builder: (context, heatMapVM, child) {
         return Container(

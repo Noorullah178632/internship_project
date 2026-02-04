@@ -1,12 +1,15 @@
 import 'package:first_app/utils/appcolors.dart';
-import 'package:first_app/view_models/barChart_view_model.dart';
+//import 'package:first_app/view_models/barChart_view_model.dart';
 import 'package:first_app/views/creater/Drawer/drawer_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/alert_notification_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/bar_chart_view2.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/donut_chart_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/heat_map_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/line_chart_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/quick_actions.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/recent_activity_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/stacked_bar_chart_view.dart';
+import 'package:first_app/views/creater/admin_DashBoard/widgets/submitted_form.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +42,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
               "Amdad",
               style: GoogleFonts.marhey(
                 fontWeight: FontWeight.w700,
-                fontSize: 20,
+                fontSize: 20.sp,
                 color: Color(0XFF4CAF50),
               ),
             ),
@@ -52,7 +55,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 Scaffold.of(context).openEndDrawer();
               },
               icon: Icon(Icons.menu),
-              iconSize: 40,
+              iconSize: 40.w,
               color: Colors.black,
             ),
           ),
@@ -61,7 +64,12 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
       endDrawer: DrawerView(),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(top: 40, bottom: 40, left: 20, right: 20),
+          padding: EdgeInsets.only(
+            top: 40.h,
+            bottom: 40.h,
+            left: 20.w,
+            right: 20.w,
+          ),
           width: screenWidth,
           decoration: BoxDecoration(color: Color(0XFFFEF9EF)),
           child: Column(
@@ -94,7 +102,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                     SizedBox(height: screenHeight * 0.03),
                     Container(
                       width: screenWidth,
-                      height: 44,
+                      height: 44.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(22),
                         color: Appcolors.primarColor,
@@ -143,7 +151,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       "Platform Statistics",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
-                        fontSize: 24,
+                        fontSize: 24.sp,
                         height: 1.5,
                         letterSpacing: 1,
                         color: Color(0XFF505050),
@@ -219,6 +227,15 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
               SizedBox(height: screenHeight * 0.03),
               //8th part
               RecentActivity(),
+              SizedBox(height: screenHeight * 0.03),
+              //9th part
+              AlertNotificationView(),
+              SizedBox(height: screenHeight * 0.03),
+              //10 part
+              QuickActions(),
+              SizedBox(height: screenHeight * 0.03),
+              //11 part
+              SubmittedForm(),
             ],
           ),
         ),
@@ -251,7 +268,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image(image: AssetImage(imagePath), width: 32, height: 32),
+            Image(image: AssetImage(imagePath), width: 32.w, height: 32.h),
             //  SizedBox(width: 20),
             Expanded(
               child: Column(
