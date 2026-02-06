@@ -3,6 +3,7 @@ import 'package:first_app/views/creater/admin_DashBoard/widgets/heat_map_view.da
 import 'package:first_app/views/creater/admin_DashBoard/widgets/quick_actions.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/recent_activity_view.dart';
 import 'package:first_app/views/creater/admin_DashBoard/widgets/submitted_form.dart';
+import 'package:first_app/views/creater/detailed_profile_view.dart';
 import 'package:flutter/material.dart';
 
 class DummyclassView extends StatefulWidget {
@@ -17,7 +18,7 @@ class _DummyclassViewState extends State<DummyclassView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: false),
-      body: SubmittedForm(),
+      body: DetailedProfileView(),
     );
   }
 }

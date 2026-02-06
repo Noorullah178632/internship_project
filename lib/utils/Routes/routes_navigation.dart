@@ -1,5 +1,6 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/views/creater/admin_DashBoard/admin_dashboard_view.dart';
+import 'package:first_app/views/creater/detailed_profile_view.dart';
 import 'package:first_app/views/dummyclass_view.dart';
 import 'package:first_app/views/users/about_view.dart';
 import 'package:first_app/views/users/Boarding_pages/boarding_view.dart';
@@ -71,6 +72,10 @@ class AppRoutes {
 
       case RouteName.drawerAdmin:
         return MaterialPageRoute(builder: (_) => Drawer());
+
+      case RouteName.detailProfile:
+        return MaterialPageRoute(builder: (_) => DetailedProfileView());
+
       //dummy screen
       case RouteName.dummyPage:
         return MaterialPageRoute(builder: (_) => DummyclassView());

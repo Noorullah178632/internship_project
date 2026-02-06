@@ -1,5 +1,6 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DrawerView extends StatelessWidget {
@@ -19,9 +20,10 @@ class DrawerView extends StatelessWidget {
       ),
       width: screenWidth * 0.8,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(height: 70.h),
           _buildTextWidget(context, "Dashboard", RouteName.adminDashboard),
 
           _buildTextWidget(

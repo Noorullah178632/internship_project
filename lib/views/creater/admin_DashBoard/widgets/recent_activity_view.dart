@@ -237,14 +237,17 @@ class _RecentActivityState extends State<RecentActivity> {
       ),
       padding: EdgeInsets.only(top: 5, bottom: 5),
       child: Center(
-        child: Text(
-          text,
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w200,
-            fontSize: 12.sp,
-            height: 1.5,
-            letterSpacing: 0.75,
-            color: Colors.black,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Text(
+            text,
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w200,
+              fontSize: 12.sp,
+              height: 1.5,
+              letterSpacing: 0.75,
+              color: Colors.black,
+            ),
           ),
         ),
       ),

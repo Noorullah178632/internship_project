@@ -55,7 +55,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 Scaffold.of(context).openEndDrawer();
               },
               icon: Icon(Icons.menu),
-              iconSize: 40.w,
+              iconSize: 40,
               color: Colors.black,
             ),
           ),

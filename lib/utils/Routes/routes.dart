@@ -18,6 +18,7 @@ class RouteName {
   //admin screens
   static const String adminDashboard = "/adminDashBoard";
   static const String drawerAdmin = "/drawerAdmin";
+  static const String detailProfile = "/detailProfile";
   //dummy page for testing in the last i will remove ti
   static const String dummyPage = "/dymmyPage";
 }
