@@ -2,7 +2,8 @@ import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/Routes/routes_navigation.dart';
 import 'package:first_app/view_models/boarding_view_model.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
-import 'package:first_app/view_models/check_box_view_model.dart';
+import 'package:first_app/view_models/Table_view_model.dart';
+import 'package:first_app/view_models/drop_down_service_provider_view_model.dart';
 import 'package:first_app/view_models/drop_down_view_model.dart';
 import 'package:first_app/view_models/heat_map_view_model.dart';
 import 'package:first_app/view_models/normal_model.dart';
@@ -25,6 +26,9 @@ void main() {
         ChangeNotifierProvider(create: (_) => HeatMapViewModel()),
         ChangeNotifierProvider(create: (_) => DropDownViewModel()),
         ChangeNotifierProvider(create: (_) => CheckBoxViewModel()),
+        ChangeNotifierProvider(
+          create: (_) => DropDownServiceProviderViewModel(),
+        ),
       ],
       child: MyApp(),
     ),
@@ -44,7 +48,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           //try to set the routing
-          initialRoute: RouteName.serviceListingManagement,
+          initialRoute: RouteName.serviceProviderNotification,
 
           onGenerateRoute: AppRoutes.RoutesNavigation,
           debugShowCheckedModeBanner: false,

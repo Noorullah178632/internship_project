@@ -1,27 +1,127 @@
+import 'package:first_app/models/status_model.dart';
 import 'package:first_app/view_models/Table_view_model.dart';
+import 'package:first_app/view_models/drop_down_service_provider_view_model.dart';
 import 'package:first_app/view_models/drop_down_view_model.dart';
 import 'package:first_app/views/creater/Drawer/drawer_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ServiceListingManagementView extends StatefulWidget {
-  const ServiceListingManagementView({super.key});
+class ServiceProviderNotificaton extends StatefulWidget {
+  const ServiceProviderNotificaton({super.key});
 
   @override
-  State<ServiceListingManagementView> createState() =>
-      _ServiceListingManagementViewState();
+  State<ServiceProviderNotificaton> createState() =>
+      _ServiceProviderNotificaton();
 }
 
-class _ServiceListingManagementViewState
-    extends State<ServiceListingManagementView> {
+class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
+  //all Images
+  // Images
+  List<String> images = List.generate(
+    10,
+    (i) => "assets/images/admin/imagelisting/${i + 1}.png",
+  );
+
+  // Added Dates
+
+  List<String> dateApplied = [
+    "2025-06-10",
+    "2025-08-03",
+    "2025-05-12",
+    "2025-05-29",
+    "2025-06-01",
+    "2025-06-13",
+    "2025-06-11",
+    "2025-06-02",
+    "2025-05-09",
+    "2025-06-14",
+  ];
+  //contact info
+  List<String> contactInfo = [
+    "hope@gmail.com",
+    "sepl@gmail.com",
+    "Medicaretrust@gmail.com",
+    "youthserve@gmail.com",
+    "warmhands@gmail.com",
+    "rfa@gmail.com",
+    "healing@gmail.com",
+    "karwane@gmail.com",
+    "edulift@gmail.com",
+    "nourish@gmail.com",
+  ];
+  //submitted Documents
+  List<String> submittedDocuments = [
+    "ID Card, Food License",
+    "Registration Cert",
+    "Health License, CNIC",
+    "Proof of Work, CNIC",
+    "ID Proof, Partnership MOU",
+    "CNIC, Bank Statement",
+    "Health Certificate",
+    "Photos, CNIC",
+    "Reg Cert, Teaching Plan",
+    "Field Photos, CNIC",
+  ];
+  //status items and color
+  List<StatusItem> statusItems = [
+    StatusItem(text: "Pending", color: Colors.yellow),
+    StatusItem(text: "Verified", color: Colors.green),
+    StatusItem(text: "Pending", color: Colors.yellow),
+    StatusItem(text: "Rejected", color: Colors.red),
+    StatusItem(text: "Pending", color: Colors.yellow),
+    StatusItem(text: "Pending", color: Colors.yellow),
+    StatusItem(text: "Verified", color: Colors.green),
+    StatusItem(text: "Verified", color: Colors.green),
+    StatusItem(text: "Pending", color: Colors.yellow),
+    StatusItem(text: "Verified", color: Colors.green),
+  ];
+  // Locations
+
+  List<String> locations = [
+    "Karachi",
+    "Lahore",
+    "Islamabad",
+    "Peshawar",
+    "Quetta",
+    "Rawalpindi",
+    "Multan",
+    "Hyderabad",
+    "Faisalabad",
+    "Sialkot",
+  ];
+  //category
+  List<String> categories = [
+    "Food",
+    "Shelter",
+    "Medical",
+    "Food, Shelter",
+    "Clothing",
+    "Food!",
+    "Medical",
+    "Shelter",
+    "Education",
+    "Food, Health",
+  ];
+  // provider
+  List<String> providerList = [
+    "Hope Aid Foundation",
+    "Safe Shelter Pk",
+    "MediCare Trust",
+    "Youth Serve Initiative",
+    "Warm Hands Network",
+    "Ring for All",
+    "Healing Wings NGO",
+    "Karwan-e-Umeed",
+    "Edulift Pakistan",
+    "Nourish & Care",
+  ];
+
   @override
   Widget build(BuildContext context) {
-    //make a instance of provider
-    // Provider.of<DropDownViewModel>(context);
-    // Provider.of<CheckBoxViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -70,7 +170,7 @@ class _ServiceListingManagementViewState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Service Listings Management",
+                    "NGO & Service Provider Verification",
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 32.sp,
@@ -92,7 +192,7 @@ class _ServiceListingManagementViewState
                       ),
                       children: [
                         TextSpan(
-                          text: "Content Moderation / Service Oversight \n\n",
+                          text: "Varification / Trust Management \n\n",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16.sp,
@@ -105,7 +205,7 @@ class _ServiceListingManagementViewState
                         TextSpan(text: "Purpose :"),
                         TextSpan(
                           text:
-                              "Admins use this panel to manage all public-facing service listings (food, shelter, medical aid, etc.) added by verified NGOs or approved help requesters.",
+                              "Admins verify and approve NGO accounts or individual providers before their services appear live.",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16.sp,
@@ -151,9 +251,10 @@ class _ServiceListingManagementViewState
                           ],
                         ),
                         child: Row(
+                          mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
-                              width: 240.w,
+                              width: 350.w,
 
                               // padding: EdgeInsets.symmetric(horizontal: 10),
                               decoration: BoxDecoration(
@@ -167,17 +268,19 @@ class _ServiceListingManagementViewState
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.search),
 
-                                  hint: Text("Search by title or ID "),
+                                  hint: Text(
+                                    "Search by name, email, or service category ",
+                                  ),
                                   border: InputBorder.none,
                                 ),
                               ),
                             ),
 
                             SizedBox(width: 10.w),
-                            Consumer<DropDownViewModel>(
+                            Consumer<DropDownServiceProviderViewModel>(
                               builder: (context, vm, child) {
                                 return Container(
-                                  //  width: 140.w,
+                                  width: 140.w,
                                   padding: EdgeInsets.only(
                                     left: 10.w,
                                     right: 5.w,
@@ -191,7 +294,7 @@ class _ServiceListingManagementViewState
                                   ),
                                   child: DropdownButton(
                                     underline: SizedBox(),
-                                    value: vm.selectedValue,
+                                    value: vm.selectedAll,
                                     items: vm.options.map((item) {
                                       return DropdownMenuItem(
                                         value: item.value,
@@ -206,7 +309,7 @@ class _ServiceListingManagementViewState
                               },
                             ),
                             SizedBox(width: 20.w),
-                            Consumer<DropDownViewModel>(
+                            Consumer<DropDownServiceProviderViewModel>(
                               builder: (context, vm, child) {
                                 return Container(
                                   // width: 140.w,
@@ -223,7 +326,7 @@ class _ServiceListingManagementViewState
                                   ),
                                   child: DropdownButton(
                                     underline: SizedBox(),
-                                    value: vm.selectedLocation,
+                                    value: vm.selectedPending,
                                     items: vm.locationOptions.map((item) {
                                       return DropdownMenuItem(
                                         value: item.value,
@@ -231,14 +334,14 @@ class _ServiceListingManagementViewState
                                       );
                                     }).toList(),
                                     onChanged: (String? newVal) {
-                                      vm.updateSelectedLocation(newVal!);
+                                      vm.updateSelectedPending(newVal!);
                                     },
                                   ),
                                 );
                               },
                             ),
                             SizedBox(width: 20.w),
-                            Consumer<DropDownViewModel>(
+                            Consumer<DropDownServiceProviderViewModel>(
                               builder: (context, vm, child) {
                                 return Container(
                                   //  width: 140.w,
@@ -255,7 +358,7 @@ class _ServiceListingManagementViewState
                                   ),
                                   child: DropdownButton(
                                     underline: SizedBox(),
-                                    value: vm.selectedStatus,
+                                    value: vm.selectedApproved,
                                     items: vm.statusOptions.map((item) {
                                       return DropdownMenuItem(
                                         value: item.value,
@@ -263,14 +366,14 @@ class _ServiceListingManagementViewState
                                       );
                                     }).toList(),
                                     onChanged: (String? newVal) {
-                                      vm.updateSelectedStatus(newVal!);
+                                      vm.updateSelectedApproved(newVal!);
                                     },
                                   ),
                                 );
                               },
                             ),
                             SizedBox(width: 20.w),
-                            Consumer<DropDownViewModel>(
+                            Consumer<DropDownServiceProviderViewModel>(
                               builder: (context, vm, child) {
                                 return Container(
                                   //  width: 140.w,
@@ -287,7 +390,7 @@ class _ServiceListingManagementViewState
                                   ),
                                   child: DropdownButton(
                                     underline: SizedBox(),
-                                    value: vm.selectedDateAdded,
+                                    value: vm.selectedRejected,
                                     items: vm.dateAddedOptions.map((item) {
                                       return DropdownMenuItem(
                                         value: item.value,
@@ -295,7 +398,7 @@ class _ServiceListingManagementViewState
                                       );
                                     }).toList(),
                                     onChanged: (String? newVal) {
-                                      vm.updateSelectedDateAdded(newVal!);
+                                      vm.updateSelectedRejected(newVal!);
                                     },
                                   ),
                                 );
@@ -350,83 +453,25 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Image", width: 60),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/1.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/2.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/3.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/4.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/5.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/6.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/7.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/8.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/9.png",
-                              ),
-                              _buildContainerImage(
-                                "assets/images/admin/imagelisting/10.png",
-                              ),
+                              ...List.generate(images.length, (index) {
+                                return _buildContainerImage(images[index]);
+                              }),
                             ],
                           ),
                           SizedBox(width: 10.w),
                           //3rd
                           Column(
                             children: [
-                              _buildTitleText(text: "Service Tile", width: 220),
-                              _buildTextContainer(
+                              _buildTitleText(
+                                text: "NGO/Provider Name",
                                 width: 220,
-                                text: "Free Evening Meals",
                               ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Temporary Shelter for Women",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Free Medical Camp",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Emergency Food Boxes",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Night-Time Shelter Facility",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Free Doctor Consultations",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Monthly Ration Distribution",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Urgent Shelter for Flood Victims",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Free Eye Checkup Camp",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Community Kitchen Program",
-                              ),
+                              ...List.generate(providerList.length, (index) {
+                                return _buildTextContainer(
+                                  width: 220,
+                                  text: providerList[index],
+                                );
+                              }),
                             ],
                           ),
                           SizedBox(width: 10.w),
@@ -434,86 +479,43 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Category", width: 80),
-                              _buildTextContainer(width: 80, text: "Food"),
-                              _buildTextContainer(width: 80, text: "Shelter"),
-                              _buildTextContainer(width: 80, text: "Medical"),
-                              _buildTextContainer(width: 80, text: "Food"),
-                              _buildTextContainer(width: 80, text: "Shelter"),
-                              _buildTextContainer(width: 80, text: "Medical"),
-                              _buildTextContainer(width: 80, text: "Food"),
-                              _buildTextContainer(width: 80, text: "Shelter"),
-                              _buildTextContainer(width: 80, text: "Medical"),
-                              _buildTextContainer(width: 80, text: "Food"),
+                              ...List.generate(categories.length, (index) {
+                                return _buildTextContainer(
+                                  width: 80,
+                                  text: categories[index],
+                                );
+                              }),
                             ],
                           ),
                           SizedBox(width: 10.w),
                           //5th
                           Column(
                             children: [
-                              _buildTitleText(text: "Provider", width: 220),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Al-Khidmat Foundation",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Safa Haven NGO",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Behbut Foundation",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Helping Hands Trust",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Edhi Foundation",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Life Care Clinic",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Feed Pakistan",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Hope Aid Pakistan",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Vision Aid",
-                              ),
-                              _buildTextContainer(
-                                width: 220,
-                                text: "Serve Humanity Org",
-                              ),
+                              _buildTitleText(text: "Location", width: 80),
+                              ...List.generate(locations.length, (index) {
+                                return _buildTextContainer(
+                                  width: 80,
+                                  text: locations[index],
+                                );
+                              }),
                             ],
                           ),
                           SizedBox(width: 10.w),
                           //6th
                           Column(
                             children: [
-                              _buildTitleText(text: "Location", width: 80),
-                              _buildTextContainer(width: 80, text: "Karachi"),
-                              _buildTextContainer(width: 80, text: "Lahore"),
-                              _buildTextContainer(width: 80, text: "Islamabad"),
-                              _buildTextContainer(width: 80, text: "Peshawar"),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Rawalpindi",
+                              _buildTitleText(
+                                text: "Submitted Document",
+                                width: 220,
                               ),
-                              _buildTextContainer(width: 80, text: "Quetta"),
-                              _buildTextContainer(width: 80, text: "Hyderabad"),
-                              _buildTextContainer(width: 80, text: "Sukkur"),
-                              _buildTextContainer(width: 80, text: "Multan"),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Faisalabad",
-                              ),
+                              ...List.generate(submittedDocuments.length, (
+                                index,
+                              ) {
+                                return _buildTextContainer(
+                                  width: 220,
+                                  text: submittedDocuments[index],
+                                );
+                              }),
                             ],
                           ),
                           SizedBox(width: 10.w),
@@ -521,56 +523,13 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Status", width: 80),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Verified",
-                                color: Colors.green,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Pending",
-                                color: Colors.orange,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Verified",
-                                color: Colors.green,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Rejected",
-                                color: Colors.red,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Verified",
-                                color: Colors.green,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Pending",
-                                color: Colors.orange,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Verified",
-                                color: Colors.green,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Verified",
-                                color: Colors.green,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Pending",
-                                color: Colors.orange,
-                              ),
-                              _buildTextContainer(
-                                width: 80,
-                                text: "Verified",
-                                color: Colors.green,
-                              ),
+                              ...List.generate(statusItems.length, (index) {
+                                return _buildTextContainer(
+                                  width: 80,
+                                  text: statusItems[index].text,
+                                  color: statusItems[index].color,
+                                );
+                              }),
                             ],
                           ),
                           SizedBox(width: 10.w),
@@ -578,45 +537,12 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Added Data", width: 100),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-20",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-22",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-18",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-23",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-18",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-21",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-24",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-20",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-25",
-                              ),
-                              _buildTextContainer(
-                                width: 100,
-                                text: "2025-05-26",
+                              ...List.generate(
+                                dateApplied.length,
+                                (index) => _buildTextContainer(
+                                  width: 100,
+                                  text: dateApplied[index],
+                                ),
                               ),
                             ],
                           ),
@@ -625,55 +551,13 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Actions", width: 80),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Edit",
-                                color: Colors.blue,
+                              ...List.generate(
+                                10,
+                                (index) => _buildActionWidget(
+                                  width: 80,
+                                  text: "Edit",
+                                  color: Colors.blue,
+                                ),
                               ),
                             ],
                           ),
@@ -682,55 +566,13 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Actions", width: 80),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "View",
-                                color: Colors.grey,
+                              ...List.generate(
+                                10,
+                                (index) => _buildActionWidget(
+                                  width: 80,
+                                  text: "view",
+                                  color: Colors.grey,
+                                ),
                               ),
                             ],
                           ),
@@ -739,55 +581,14 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Actions", width: 80),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Approve",
-                                color: Color(0xFF7986CB),
+
+                              ...List.generate(
+                                10,
+                                (index) => _buildActionWidget(
+                                  width: 80,
+                                  text: "Approve",
+                                  color: Color(0xFF7986CB),
+                                ),
                               ),
                             ],
                           ),
@@ -796,55 +597,14 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Actions", width: 80),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Reject",
-                                color: Color(0xFFEF5350),
+
+                              ...List.generate(
+                                10,
+                                (index) => _buildActionWidget(
+                                  width: 80,
+                                  text: "Reject",
+                                  color: Color(0xFFEF5350),
+                                ),
                               ),
                             ],
                           ),
@@ -853,60 +613,19 @@ class _ServiceListingManagementViewState
                           Column(
                             children: [
                               _buildTitleText(text: "Actions", width: 80),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
-                              _buildActionWidget(
-                                width: 80,
-                                text: "Delete",
-                                color: Color(0xFFE57373),
-                              ),
+
+                              ...List.generate(10, (index) {
+                                return _buildActionWidget(
+                                  width: 80,
+                                  text: "Delete",
+                                  color: Color(0xFFE57373),
+                                );
+                              }),
                             ],
                           ),
                         ],
                       ),
+
                       SizedBox(height: 15.h),
                       //3rd section
                       Row(
@@ -1029,7 +748,7 @@ class _ServiceListingManagementViewState
               ),
             ),
             SizedBox(width: 5.w),
-            Icon(icon, color: Colors.white, size: 16.r),
+            Icon(icon, color: Colors.white, size: 16.sp),
           ],
         ),
       ),
@@ -1038,20 +757,23 @@ class _ServiceListingManagementViewState
 
   //widget : titletext
   Widget _buildTitleText({required String text, required double width}) {
-    return Container(
-      width: width.w,
-      height: 40.h,
-      decoration: BoxDecoration(color: Color(0XFFC8E6C9)),
-      child: Center(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Text(
-            text,
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w500,
-              fontSize: 14.sp,
-              height: 1.5.h,
-              color: Colors.black,
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Container(
+        width: width.w,
+        height: 40.h,
+        decoration: BoxDecoration(color: Color(0XFFC8E6C9)),
+        child: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+              text,
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500,
+                fontSize: 14.sp,
+                height: 1.5.h,
+                color: Colors.black,
+              ),
             ),
           ),
         ),
@@ -1063,8 +785,8 @@ class _ServiceListingManagementViewState
   Widget _buildContainerImage(String imagePath) {
     return Container(
       width: 60.w,
-      height: 40.h,
 
+      height: 40.h,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
@@ -1124,8 +846,8 @@ class _ServiceListingManagementViewState
   }) {
     return Container(
       width: width.w,
-      height: 40.h,
 
+      height: 40.h,
       decoration: BoxDecoration(
         color: color,
         border: Border(
