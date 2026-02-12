@@ -7,6 +7,7 @@ import 'package:first_app/view_models/drop_down_service_provider_view_model.dart
 import 'package:first_app/view_models/drop_down_view_model.dart';
 import 'package:first_app/view_models/heat_map_view_model.dart';
 import 'package:first_app/view_models/normal_model.dart';
+import 'package:first_app/view_models/report_list_view_model.dart';
 import 'package:first_app/view_models/splash_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,6 +30,7 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => DropDownServiceProviderViewModel(),
         ),
+        ChangeNotifierProvider(create: (_) => ReportListViewModel()),
       ],
       child: MyApp(),
     ),
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           //try to set the routing
-          initialRoute: RouteName.serviceProviderNotification,
+          initialRoute: RouteName.reportList,
 
           onGenerateRoute: AppRoutes.RoutesNavigation,
           debugShowCheckedModeBanner: false,

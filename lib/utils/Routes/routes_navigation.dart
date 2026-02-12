@@ -1,6 +1,7 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/views/creater/admin_DashBoard/admin_dashboard_view.dart';
 import 'package:first_app/views/creater/detailed_profile_view.dart';
+import 'package:first_app/views/creater/report_list.dart';
 import 'package:first_app/views/creater/service_listing_management_view.dart';
 import 'package:first_app/views/creater/service_provider_notification.dart';
 import 'package:first_app/views/dummyclass_view.dart';
@@ -83,6 +84,8 @@ class AppRoutes {
         );
       case RouteName.serviceProviderNotification:
         return MaterialPageRoute(builder: (_) => ServiceProviderNotificaton());
+      case RouteName.reportList:
+        return MaterialPageRoute(builder: (_) => ReportList());
 
       //dummy screen
       case RouteName.dummyPage:
