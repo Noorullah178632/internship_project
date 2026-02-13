@@ -24,6 +24,7 @@ class RouteName {
       "/serviceProviderNotificaton";
 
   static const String reportList = "/reportList";
+  static const String userManagement = "/userManagement";
   //dummy page for testing in the last i will remove ti
   static const String dummyPage = "/dymmyPage";
 }

@@ -10,6 +10,7 @@ import 'package:first_app/view_models/normal_model.dart';
 import 'package:first_app/view_models/report_list_view_model.dart';
 import 'package:first_app/view_models/splash_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
+import 'package:first_app/view_models/user_management_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,8 @@ void main() {
           create: (_) => DropDownServiceProviderViewModel(),
         ),
         ChangeNotifierProvider(create: (_) => ReportListViewModel()),
+
+        ChangeNotifierProvider(create: (_) => UserManagementViewModel()),
       ],
       child: MyApp(),
     ),
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           //try to set the routing
-          initialRoute: RouteName.reportList,
+          initialRoute: RouteName.userManagement,
 
           onGenerateRoute: AppRoutes.RoutesNavigation,
           debugShowCheckedModeBanner: false,

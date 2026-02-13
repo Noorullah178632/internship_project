@@ -4,6 +4,7 @@ import 'package:first_app/views/creater/detailed_profile_view.dart';
 import 'package:first_app/views/creater/report_list.dart';
 import 'package:first_app/views/creater/service_listing_management_view.dart';
 import 'package:first_app/views/creater/service_provider_notification.dart';
+import 'package:first_app/views/creater/user_management_view.dart';
 import 'package:first_app/views/dummyclass_view.dart';
 import 'package:first_app/views/users/about_view.dart';
 import 'package:first_app/views/users/Boarding_pages/boarding_view.dart';
@@ -25,6 +26,7 @@ import 'package:first_app/views/users/splash_view.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
+  // ignore: non_constant_identifier_names
   static Route<dynamic> RoutesNavigation(RouteSettings settings) {
     //with the the help of switching we have to switch through screens
     switch (settings.name) {
@@ -86,6 +88,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => ServiceProviderNotificaton());
       case RouteName.reportList:
         return MaterialPageRoute(builder: (_) => ReportList());
+      case RouteName.userManagement:
+        return MaterialPageRoute(builder: (_) => UserManagementView());
 
       //dummy screen
       case RouteName.dummyPage:
