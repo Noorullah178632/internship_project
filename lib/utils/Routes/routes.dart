@@ -25,6 +25,7 @@ class RouteName {
 
   static const String reportList = "/reportList";
   static const String userManagement = "/userManagement";
+  static const String contentManagement = "/contentManagement";
   //dummy page for testing in the last i will remove ti
   static const String dummyPage = "/dymmyPage";
 }
