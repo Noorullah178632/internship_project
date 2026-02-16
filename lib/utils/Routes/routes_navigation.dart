@@ -3,6 +3,7 @@ import 'package:first_app/views/creater/admin_DashBoard/admin_dashboard_view.dar
 import 'package:first_app/views/creater/content_management_view.dart';
 import 'package:first_app/views/creater/detailed_profile_view.dart';
 import 'package:first_app/views/creater/report_list.dart';
+import 'package:first_app/views/creater/review_rating_management_view.dart';
 import 'package:first_app/views/creater/service_listing_management_view.dart';
 import 'package:first_app/views/creater/service_provider_notification.dart';
 import 'package:first_app/views/creater/user_management_view.dart';
@@ -93,6 +94,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => UserManagementView());
       case RouteName.contentManagement:
         return MaterialPageRoute(builder: (_) => ContentManagementView());
+      case RouteName.reviewManagement:
+        return MaterialPageRoute(builder: (_) => ReviewRatingManagementView());
 
       //dummy screen
       case RouteName.dummyPage:

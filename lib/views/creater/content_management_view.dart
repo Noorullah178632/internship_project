@@ -1,9 +1,7 @@
-import 'package:first_app/view_models/Table_view_model.dart';
 import 'package:first_app/views/creater/Drawer/drawer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ContentManagementView extends StatefulWidget {
   const ContentManagementView({super.key});

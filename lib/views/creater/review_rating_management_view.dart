@@ -1,6 +1,7 @@
 import 'package:first_app/models/status_model.dart';
 import 'package:first_app/view_models/Table_view_model.dart';
 import 'package:first_app/view_models/drop_down_service_provider_view_model.dart';
+import 'package:first_app/view_models/review_rating_management_view_model.dart';
 import 'package:first_app/views/creater/Drawer/drawer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,16 +9,67 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ServiceProviderNotificaton extends StatefulWidget {
-  const ServiceProviderNotificaton({super.key});
+class ReviewRatingManagementView extends StatefulWidget {
+  const ReviewRatingManagementView({super.key});
 
   @override
-  State<ServiceProviderNotificaton> createState() =>
-      _ServiceProviderNotificaton();
+  State<ReviewRatingManagementView> createState() =>
+      _ReviewRatingManagementViewState();
 }
 
-class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
-  //all Images
+class _ReviewRatingManagementViewState
+    extends State<ReviewRatingManagementView> {
+  //user daata//
+  List<Map<String, dynamic>> usersList = [
+    {
+      'reviewId': '3214',
+      'serviceTitle': 'Free Clinic',
+      'reviewer': 'User123',
+      'rating': 5,
+      'reviewSnippet': 'Helpful staff...',
+      'date': '15 Jun 2025',
+      'status': {
+        'text': 'Active',
+        'color': Color(0xFF4CAF50).withOpacity(0.5), // Green
+      },
+      'actions1': {
+        'text': 'View',
+        'color': Color(0xFF424242).withOpacity(0.5), // Dark Gray
+      },
+      'actions2': {
+        'text': 'Hide',
+        'color': Color(0xFF5C6BC0).withOpacity(0.5), // Dark Gray
+      },
+      'actions3': {
+        'text': 'Flag',
+        'color': Color(0xFFE53935).withOpacity(0.5), // Blue
+      },
+    },
+    {
+      'reviewId': '3215',
+      'serviceTitle': 'Shelter PC',
+      'reviewer': 'Ayesha_56',
+      'rating': 3,
+      'reviewSnippet': 'Crowded & slow...',
+      'date': '14 Jun 2025',
+      'status': {
+        'text': 'Active',
+        'color': Color(0xFF4CAF50).withOpacity(0.5), // Green
+      },
+      'actions1': {
+        'text': 'Review',
+        'color': Color(0xFF424242).withOpacity(0.5), // Dark Gray
+      },
+      'actions2': {
+        'text': 'Review',
+        'color': Color(0xFF5C6BC0).withOpacity(0.5), // Blue
+      },
+      'actions3': {
+        'text': 'Delete',
+        'color': Color(0xFFE53935).withOpacity(0.5), // Red
+      },
+    },
+  ];
   // Images
   List<String> images = List.generate(
     10,
@@ -26,101 +78,10 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
 
   // Added Dates
 
-  List<String> dateApplied = [
-    "2025-06-10",
-    "2025-08-03",
-    "2025-05-12",
-    "2025-05-29",
-    "2025-06-01",
-    "2025-06-13",
-    "2025-06-11",
-    "2025-06-02",
-    "2025-05-09",
-    "2025-06-14",
-  ];
-  //contact info
-  List<String> contactInfo = [
-    "hope@gmail.com",
-    "sepl@gmail.com",
-    "Medicaretrust@gmail.com",
-    "youthserve@gmail.com",
-    "warmhands@gmail.com",
-    "rfa@gmail.com",
-    "healing@gmail.com",
-    "karwane@gmail.com",
-    "edulift@gmail.com",
-    "nourish@gmail.com",
-  ];
-  //submitted Documents
-  List<String> submittedDocuments = [
-    "ID Card, Food License",
-    "Registration Cert",
-    "Health License, CNIC",
-    "Proof of Work, CNIC",
-    "ID Proof, Partnership MOU",
-    "CNIC, Bank Statement",
-    "Health Certificate",
-    "Photos, CNIC",
-    "Reg Cert, Teaching Plan",
-    "Field Photos, CNIC",
-  ];
-  //status items and color
-  List<StatusItem> statusItems = [
-    StatusItem(text: "Pending", color: Colors.yellow),
-    StatusItem(text: "Verified", color: Colors.green),
-    StatusItem(text: "Pending", color: Colors.yellow),
-    StatusItem(text: "Rejected", color: Colors.red),
-    StatusItem(text: "Pending", color: Colors.yellow),
-    StatusItem(text: "Pending", color: Colors.yellow),
-    StatusItem(text: "Verified", color: Colors.green),
-    StatusItem(text: "Verified", color: Colors.green),
-    StatusItem(text: "Pending", color: Colors.yellow),
-    StatusItem(text: "Verified", color: Colors.green),
-  ];
-  // Locations
-
-  List<String> locations = [
-    "Karachi",
-    "Lahore",
-    "Islamabad",
-    "Peshawar",
-    "Quetta",
-    "Rawalpindi",
-    "Multan",
-    "Hyderabad",
-    "Faisalabad",
-    "Sialkot",
-  ];
-  //category
-  List<String> categories = [
-    "Food",
-    "Shelter",
-    "Medical",
-    "Food, Shelter",
-    "Clothing",
-    "Food!",
-    "Medical",
-    "Shelter",
-    "Education",
-    "Food, Health",
-  ];
-  // provider
-  List<String> providerList = [
-    "Hope Aid Foundation",
-    "Safe Shelter Pk",
-    "MediCare Trust",
-    "Youth Serve Initiative",
-    "Warm Hands Network",
-    "Ring for All",
-    "Healing Wings NGO",
-    "Karwan-e-Umeed",
-    "Edulift Pakistan",
-    "Nourish & Care",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
@@ -168,7 +129,7 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "NGO & Service Provider Verification",
+                    "Reviews & Ratings Management",
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 32.sp,
@@ -180,7 +141,7 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
 
                   Text.rich(
                     TextSpan(
-                      text: "Type :",
+                      text: "Purpose :\n",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 16.sp,
@@ -190,25 +151,37 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                       ),
                       children: [
                         TextSpan(
-                          text: "Varification / Trust Management \n\n",
+                          text:
+                              "• Let admins monitor user-submitted reviews and ratings\n",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16.sp,
                             letterSpacing: 0.75,
-                            height: 1,
+                            height: 1.4.h,
                             color: Colors.black,
                           ),
                         ),
 
-                        TextSpan(text: "Purpose :"),
                         TextSpan(
                           text:
-                              "Admins verify and approve NGO accounts or individual providers before their services appear live.",
+                              "• Filter, flag, hide, or delete inappropriate or misleading reviews \n",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16.sp,
                             letterSpacing: 0.75,
-                            height: 1,
+                            height: 1.4.h,
+                            color: Colors.black,
+                          ),
+                        ),
+
+                        TextSpan(
+                          text:
+                              "• Maintain trust and transparency on the platform \n",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16.sp,
+                            letterSpacing: 0.75,
+                            height: 1.4.h,
                             color: Colors.black,
                           ),
                         ),
@@ -252,7 +225,7 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
-                              width: 350.w,
+                              width: 170.w,
 
                               // padding: EdgeInsets.symmetric(horizontal: 10),
                               decoration: BoxDecoration(
@@ -266,48 +239,14 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.search),
 
-                                  hint: Text(
-                                    "Search by name, email, or service category ",
-                                  ),
+                                  hint: Text("Search"),
                                   border: InputBorder.none,
                                 ),
                               ),
                             ),
 
                             SizedBox(width: 10.w),
-                            Consumer<DropDownServiceProviderViewModel>(
-                              builder: (context, vm, child) {
-                                return Container(
-                                  width: 140.w,
-                                  padding: EdgeInsets.only(
-                                    left: 10.w,
-                                    right: 5.w,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 0.2,
-                                      color: Colors.black,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5.r),
-                                  ),
-                                  child: DropdownButton(
-                                    underline: SizedBox(),
-                                    value: vm.selectedAll,
-                                    items: vm.options.map((item) {
-                                      return DropdownMenuItem(
-                                        value: item.value,
-                                        child: Text(item.value),
-                                      );
-                                    }).toList(),
-                                    onChanged: (String? newVal) {
-                                      vm.updateSelectedValue(newVal!);
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                            SizedBox(width: 20.w),
-                            Consumer<DropDownServiceProviderViewModel>(
+                            Consumer<ReviewRatingManagementViewModel>(
                               builder: (context, vm, child) {
                                 return Container(
                                   // width: 140.w,
@@ -324,22 +263,54 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                                   ),
                                   child: DropdownButton(
                                     underline: SizedBox(),
-                                    value: vm.selectedPending,
-                                    items: vm.locationOptions.map((item) {
+                                    value: vm.selectedServices,
+                                    items: vm.serviceOptions.map((item) {
                                       return DropdownMenuItem(
                                         value: item.value,
                                         child: Text(item.value),
                                       );
                                     }).toList(),
                                     onChanged: (String? newVal) {
-                                      vm.updateSelectedPending(newVal!);
+                                      vm.updateSelectedServices(newVal!);
                                     },
                                   ),
                                 );
                               },
                             ),
                             SizedBox(width: 20.w),
-                            Consumer<DropDownServiceProviderViewModel>(
+                            Consumer<ReviewRatingManagementViewModel>(
+                              builder: (context, vm, child) {
+                                return Container(
+                                  // width: 140.w,
+                                  padding: EdgeInsets.only(
+                                    left: 10.w,
+                                    right: 5.w,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 0.2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(5.r),
+                                  ),
+                                  child: DropdownButton(
+                                    underline: SizedBox(),
+                                    value: vm.selectedUser,
+                                    items: vm.usersOptions.map((item) {
+                                      return DropdownMenuItem(
+                                        value: item.value,
+                                        child: Text(item.value),
+                                      );
+                                    }).toList(),
+                                    onChanged: (String? newVal) {
+                                      vm.updateSelectedUser(newVal!);
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                            SizedBox(width: 20.w),
+                            Consumer<ReviewRatingManagementViewModel>(
                               builder: (context, vm, child) {
                                 return Container(
                                   //  width: 140.w,
@@ -356,22 +327,22 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                                   ),
                                   child: DropdownButton(
                                     underline: SizedBox(),
-                                    value: vm.selectedApproved,
-                                    items: vm.statusOptions.map((item) {
+                                    value: vm.selectedRating,
+                                    items: vm.ratingOptions.map((item) {
                                       return DropdownMenuItem(
                                         value: item.value,
                                         child: Text(item.value),
                                       );
                                     }).toList(),
                                     onChanged: (String? newVal) {
-                                      vm.updateSelectedApproved(newVal!);
+                                      vm.updateSelectedRating(newVal!);
                                     },
                                   ),
                                 );
                               },
                             ),
                             SizedBox(width: 20.w),
-                            Consumer<DropDownServiceProviderViewModel>(
+                            Consumer<ReviewRatingManagementViewModel>(
                               builder: (context, vm, child) {
                                 return Container(
                                   //  width: 140.w,
@@ -388,15 +359,47 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                                   ),
                                   child: DropdownButton(
                                     underline: SizedBox(),
-                                    value: vm.selectedRejected,
-                                    items: vm.dateAddedOptions.map((item) {
+                                    value: vm.selectedStatus,
+                                    items: vm.statusgOptions.map((item) {
                                       return DropdownMenuItem(
                                         value: item.value,
                                         child: Text(item.value),
                                       );
                                     }).toList(),
                                     onChanged: (String? newVal) {
-                                      vm.updateSelectedRejected(newVal!);
+                                      vm.updateSelectedStatus(newVal!);
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                            SizedBox(width: 20.w),
+                            Consumer<ReviewRatingManagementViewModel>(
+                              builder: (context, vm, child) {
+                                return Container(
+                                  //  width: 140.w,
+                                  padding: EdgeInsets.only(
+                                    left: 10.w,
+                                    right: 5.w,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 0.2,
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: BorderRadius.circular(5.r),
+                                  ),
+                                  child: DropdownButton(
+                                    underline: SizedBox(),
+                                    value: vm.selectedDataRange,
+                                    items: vm.dataRangeOptions.map((item) {
+                                      return DropdownMenuItem(
+                                        value: item.value,
+                                        child: Text(item.value),
+                                      );
+                                    }).toList(),
+                                    onChanged: (String? newVal) {
+                                      vm.updateSelectedDataRange(newVal!);
                                     },
                                   ),
                                 );
@@ -405,23 +408,17 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           ],
                         ),
                       ),
+
                       SizedBox(height: 15.h),
-                      //2nd section
-                      Row(
-                        children: [
-                          SizedBox(child: Text("All 56")),
-                          SizedBox(width: 35.w),
-                          _buildButton("Add New", Icons.add),
-                          SizedBox(width: 35.w),
-                          _buildButton("Export List", Icons.file_open_outlined),
-                          SizedBox(width: 35.w),
-                          _buildButton(
-                            "Generate Listing Reports",
-                            FontAwesomeIcons.listCheck,
-                          ),
-                        ],
+                      Text(
+                        "All User List",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          color: Color(0XFF505050),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 15.h),
                       Row(
                         children: [
                           //1st
@@ -434,7 +431,7 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                                     onchanged: (value) {},
                                     color: Colors.green,
                                   ),
-                                  ...List.generate(10, (index) {
+                                  ...List.generate(2, (index) {
                                     return _buildCheckBox(
                                       value: vm.check[index],
                                       onchanged: (value) {
@@ -451,7 +448,7 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           Column(
                             children: [
                               _buildTitleText(text: "Image", width: 60),
-                              ...List.generate(images.length, (index) {
+                              ...List.generate(usersList.length, (index) {
                                 return _buildContainerImage(images[index]);
                               }),
                             ],
@@ -460,14 +457,11 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           //3rd
                           Column(
                             children: [
-                              _buildTitleText(
-                                text: "NGO/Provider Name",
-                                width: 220,
-                              ),
-                              ...List.generate(providerList.length, (index) {
+                              _buildTitleText(text: "Review ID", width: 150),
+                              ...List.generate(usersList.length, (index) {
                                 return _buildTextContainer(
-                                  width: 220,
-                                  text: providerList[index],
+                                  width: 150,
+                                  text: usersList[index]["reviewId"],
                                 );
                               }),
                             ],
@@ -476,11 +470,14 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           //4th
                           Column(
                             children: [
-                              _buildTitleText(text: "Category", width: 80),
-                              ...List.generate(categories.length, (index) {
+                              _buildTitleText(
+                                text: "Service Title",
+                                width: 150,
+                              ),
+                              ...List.generate(usersList.length, (index) {
                                 return _buildTextContainer(
-                                  width: 80,
-                                  text: categories[index],
+                                  width: 150,
+                                  text: usersList[index]["serviceTitle"],
                                 );
                               }),
                             ],
@@ -489,11 +486,11 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           //5th
                           Column(
                             children: [
-                              _buildTitleText(text: "Location", width: 80),
-                              ...List.generate(locations.length, (index) {
+                              _buildTitleText(text: "Reviewer", width: 150),
+                              ...List.generate(usersList.length, (index) {
                                 return _buildTextContainer(
-                                  width: 80,
-                                  text: locations[index],
+                                  width: 150,
+                                  text: usersList[index]["reviewer"],
                                 );
                               }),
                             ],
@@ -502,16 +499,40 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           //6th
                           Column(
                             children: [
-                              _buildTitleText(
-                                text: "Submitted Document",
-                                width: 220,
-                              ),
-                              ...List.generate(submittedDocuments.length, (
-                                index,
-                              ) {
+                              _buildTitleText(text: "Rating", width: 150),
+                              ...List.generate(usersList.length, (index) {
                                 return _buildTextContainer(
-                                  width: 220,
-                                  text: submittedDocuments[index],
+                                  width: 150,
+                                  text: usersList[index]["rating"].toString(),
+                                );
+                              }),
+                            ],
+                          ),
+                          SizedBox(width: 10.w),
+
+                          Column(
+                            children: [
+                              _buildTitleText(
+                                text: "ReviewSnippet",
+                                width: 150,
+                              ),
+                              ...List.generate(usersList.length, (index) {
+                                return _buildTextContainer(
+                                  width: 150,
+                                  text: usersList[index]["reviewSnippet"],
+                                );
+                              }),
+                            ],
+                          ),
+
+                          SizedBox(width: 10.h),
+                          Column(
+                            children: [
+                              _buildTitleText(text: "Date", width: 150),
+                              ...List.generate(usersList.length, (index) {
+                                return _buildTextContainer(
+                                  width: 150,
+                                  text: usersList[index]["date"],
                                 );
                               }),
                             ],
@@ -521,40 +542,27 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                           Column(
                             children: [
                               _buildTitleText(text: "Status", width: 80),
-                              ...List.generate(statusItems.length, (index) {
+                              ...List.generate(usersList.length, (index) {
                                 return _buildTextContainer(
                                   width: 80,
-                                  text: statusItems[index].text,
-                                  color: statusItems[index].color,
+                                  text: usersList[index]["status"]["text"],
+                                  color: usersList[index]["status"]["color"],
                                 );
                               }),
                             ],
                           ),
                           SizedBox(width: 10.w),
-                          //8th
-                          Column(
-                            children: [
-                              _buildTitleText(text: "Added Data", width: 100),
-                              ...List.generate(
-                                dateApplied.length,
-                                (index) => _buildTextContainer(
-                                  width: 100,
-                                  text: dateApplied[index],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 10.w),
+
                           //9th
                           Column(
                             children: [
                               _buildTitleText(text: "Actions", width: 80),
                               ...List.generate(
-                                10,
+                                usersList.length,
                                 (index) => _buildActionWidget(
                                   width: 80,
-                                  text: "Edit",
-                                  color: Colors.blue,
+                                  text: usersList[index]["actions1"]["text"],
+                                  color: usersList[index]["actions1"]["color"],
                                 ),
                               ),
                             ],
@@ -565,11 +573,11 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                             children: [
                               _buildTitleText(text: "Actions", width: 80),
                               ...List.generate(
-                                10,
+                                usersList.length,
                                 (index) => _buildActionWidget(
                                   width: 80,
-                                  text: "view",
-                                  color: Colors.grey,
+                                  text: usersList[index]["actions2"]["text"],
+                                  color: usersList[index]["actions2"]["color"],
                                 ),
                               ),
                             ],
@@ -581,46 +589,16 @@ class _ServiceProviderNotificaton extends State<ServiceProviderNotificaton> {
                               _buildTitleText(text: "Actions", width: 80),
 
                               ...List.generate(
-                                10,
+                                usersList.length,
                                 (index) => _buildActionWidget(
                                   width: 80,
-                                  text: "Approve",
-                                  color: Color(0xFF7986CB),
+                                  text: usersList[index]["actions3"]["text"],
+                                  color: usersList[index]["actions3"]["color"],
                                 ),
                               ),
                             ],
                           ),
                           SizedBox(width: 10.w),
-                          //12th
-                          Column(
-                            children: [
-                              _buildTitleText(text: "Actions", width: 80),
-
-                              ...List.generate(
-                                10,
-                                (index) => _buildActionWidget(
-                                  width: 80,
-                                  text: "Reject",
-                                  color: Color(0xFFEF5350),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 10.w),
-                          //13th
-                          Column(
-                            children: [
-                              _buildTitleText(text: "Actions", width: 80),
-
-                              ...List.generate(10, (index) {
-                                return _buildActionWidget(
-                                  width: 80,
-                                  text: "Delete",
-                                  color: Color(0xFFE57373),
-                                );
-                              }),
-                            ],
-                          ),
                         ],
                       ),
 
