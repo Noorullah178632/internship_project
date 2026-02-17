@@ -6,7 +6,9 @@ import 'package:first_app/view_models/Table_view_model.dart';
 import 'package:first_app/view_models/drop_down_service_provider_view_model.dart';
 import 'package:first_app/view_models/drop_down_view_model.dart';
 import 'package:first_app/view_models/heat_map_view_model.dart';
+import 'package:first_app/view_models/location_services_view_model.dart';
 import 'package:first_app/view_models/normal_model.dart';
+import 'package:first_app/view_models/offer_help_view_model.dart';
 import 'package:first_app/view_models/report_list_view_model.dart';
 import 'package:first_app/view_models/review_rating_management_view_model.dart';
 import 'package:first_app/view_models/splash_view_model.dart';
@@ -32,12 +34,15 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => DropDownServiceProviderViewModel(),
         ),
+
+        ChangeNotifierProvider(create: (_) => OfferHelpViewModel()),
         ChangeNotifierProvider(create: (_) => ReportListViewModel()),
 
         ChangeNotifierProvider(create: (_) => UserManagementViewModel()),
         ChangeNotifierProvider(
           create: (_) => ReviewRatingManagementViewModel(),
         ),
+        ChangeNotifierProvider(create: (_) => LocationServicesViewModel()),
       ],
       child: MyApp(),
     ),
@@ -57,7 +62,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           //try to set the routing
-          initialRoute: RouteName.reviewManagement,
+          initialRoute: RouteName.locationServices,
 
           onGenerateRoute: AppRoutes.RoutesNavigation,
           debugShowCheckedModeBanner: false,
