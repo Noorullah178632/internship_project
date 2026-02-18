@@ -29,49 +29,49 @@ class DrawerView extends StatelessWidget {
           _buildTextWidget(
             context,
             "Service Listings Management",
-            RouteName.adminDashboard,
+            RouteName.serviceListingManagement,
           ),
 
           _buildTextWidget(
             context,
             "NGOs / Services",
-            RouteName.adminDashboard,
+            RouteName.serviceProviderNotification,
           ),
 
           _buildTextWidget(
             context,
             "User Reports & Feedback",
-            RouteName.adminDashboard,
+            RouteName.reportList,
           ),
 
           _buildTextWidget(
             context,
             "Offer Help Requests",
-            RouteName.adminDashboard,
+            RouteName.offerHelpRequest,
           ),
 
           _buildTextWidget(
             context,
             "User Management",
-            RouteName.adminDashboard,
+            RouteName.userManagement,
           ),
 
           _buildTextWidget(
             context,
             "Content Management (CMS)",
-            RouteName.adminDashboard,
+            RouteName.contentManagement,
           ),
 
           _buildTextWidget(
             context,
             "Reviews & Ratings Management",
-            RouteName.adminDashboard,
+            RouteName.reviewManagement,
           ),
 
           _buildTextWidget(
             context,
             "Location & Service Map",
-            RouteName.adminDashboard,
+            RouteName.locationServices,
           ),
 
           _buildTextWidget(
@@ -89,7 +89,7 @@ class DrawerView extends StatelessWidget {
           _buildTextWidget(
             context,
             "Messages / Notifications",
-            RouteName.adminDashboard,
+            RouteName.serviceProviderNotification,
           ),
 
           _buildTextWidget(context, "Settings", RouteName.adminDashboard),
