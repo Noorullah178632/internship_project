@@ -42,7 +42,8 @@ dependencies:
   google_maps_flutter: ^2.14.0
   fl_chart: ^0.66.0
   font_awesome_flutter: 
-  
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
   flutter_heatmap_calendar: ^1.0.5
 
 dev_dependencies:

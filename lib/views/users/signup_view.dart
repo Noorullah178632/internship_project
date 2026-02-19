@@ -58,8 +58,8 @@ class _SignupViewState extends State<SignupView> {
         child: Container(
           margin: EdgeInsets.only(left: 16, right: 16),
           width: double.infinity,
-          height: screenHeight * 0.54,
 
+          // height: screenHeight * 0.54,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -74,7 +74,7 @@ class _SignupViewState extends State<SignupView> {
                 ),
                 child: Center(
                   child: Text(
-                    "SIGNIN",
+                    "SIGNUP",
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.normal,
@@ -264,21 +264,13 @@ class _SignupViewState extends State<SignupView> {
                         ),
                       ),
                       //gives some validation for the textfield
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return "Please Enter Your Email";
-                      //   }
-                      //   if (!value.endsWith("@gmail.com")) {
-                      //     return "Gmail should be Specific";
-                      //   }
-                      //   //get the part before @
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please Enter Your Email";
+                        }
 
-                      //   String username = value.split("@")[0];
-
-                      //   if (username.length < 8) {
-                      //     return "User name must be atleast 8 characters";
-                      //   }
-                      // },
+                        return null;
+                      },
                     ),
                     Consumer<NormalModel>(
                       builder: (build, mv, child) {
@@ -344,15 +336,15 @@ class _SignupViewState extends State<SignupView> {
                               color: Color(0XFF717171),
                             ),
                           ),
-                          // validator: (value) {
-                          //   if (value == null || value.isEmpty) {
-                          //     return "Please Enter Your Password";
-                          //   }
-                          //   if (value.length < 8) {
-                          //     return 'Password must be at least 8 characters';
-                          //   }
-                          //   return null;
-                          // },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please Enter Your Password";
+                            }
+                            if (value.length < 8) {
+                              return 'Password must be at least 8 characters';
+                            }
+                            return null;
+                          },
                         );
                       },
                     ),
@@ -393,10 +385,9 @@ class _SignupViewState extends State<SignupView> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, RouteName.home);
-                  // if (_formKey.currentState!.validate()) {
-                  //   Navigator.pushReplacementNamed(context, RouteName.home);
-                  // }
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.pushReplacementNamed(context, RouteName.home);
+                  }
                 },
                 child: Container(
                   width: double.infinity,

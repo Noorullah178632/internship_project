@@ -1,6 +1,7 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/appcolors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -10,6 +11,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  //make notifier value for only eye icon
+  final _isVisible = ValueNotifier<bool>(false);
   //global key for formstate
   final _formKey = GlobalKey<FormState>();
   //controllers for textfield
@@ -56,8 +59,8 @@ class _LoginViewState extends State<LoginView> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              width: 149,
-              height: 52,
+              width: 149.w,
+              height: 52.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 border: Border(
@@ -129,86 +132,94 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                     //gives some validation for the textfield
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return "Please Enter Your Email";
-                    //   }
-                    //   if (!value.endsWith("@gmail.com")) {
-                    //     return "Gmail should be Specific";
-                    //   }
-                    //   //get the part before @
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please Enter Your Email";
+                      }
+                      return null;
 
-                    //   String username = value.split("@")[0];
+                      // //get the part before @
 
-                    //   if (username.length < 8) {
-                    //     return "User name must be atleast 8 characters";
-                    //   }
-                    //   return "Wrong Email or Password";
-                    // },
+                      // String username = value.split("@")[0];
+
+                      // if (username.length < 8) {
+                      //   return "User name must be atleast 8 characters";
+                      // }
+                      // return "Wrong Email or Password";
+                    },
                   ),
                   //password Field
-                  TextFormField(
-                    controller: passwordController,
-                    //for text security
-                    obscureText: true,
+                  ValueListenableBuilder(
+                    valueListenable: _isVisible,
+                    builder: (context, listen, child) {
+                      return TextFormField(
+                        controller: passwordController,
+                        //for text security
+                        obscureText: _isVisible.value,
 
-                    //icon at last
-                    decoration: InputDecoration(
-                      suffixIcon: Icon(
-                        Icons.visibility_off,
-                        color: Color(0XFFAEAEAE),
-                      ),
-                      //for borders
-                      //   1:
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Color(0XFFAEAEAE),
+                        //icon at last
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              _isVisible.value = !_isVisible.value;
+                            },
+                            icon: Icon(
+                              listen ? Icons.visibility : Icons.visibility_off,
+                            ),
+                          ),
+                          //for borders
+                          //   1:
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 1,
+                              color: Color(0XFFAEAEAE),
+                            ),
+                          ),
+                          // 2:
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 1,
+                              color: Color(0XFFAEAEAE),
+                            ),
+                          ),
+                          //3:
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: Colors.red),
+                          ),
+                          //text to label
+                          label: Text(
+                            "PASSWORD",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 16,
+                              height: 1.7,
+                              letterSpacing: 0.75,
+                              color: Color(0XFFAEAEAE),
+                            ),
+                          ),
+                          //hint text
+                          hintText: "......",
+                          hintStyle: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 14,
+                            height: 1.7,
+                            letterSpacing: 0.75,
+                            color: Color(0XFF717171),
+                          ),
                         ),
-                      ),
-                      // 2:
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Color(0XFFAEAEAE),
-                        ),
-                      ),
-                      //3:
-                      errorBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.red),
-                      ),
-                      //text to label
-                      label: Text(
-                        "PASSWORD",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 16,
-                          height: 1.7,
-                          letterSpacing: 0.75,
-                          color: Color(0XFFAEAEAE),
-                        ),
-                      ),
-                      //hint text
-                      hintText: "......",
-                      hintStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        height: 1.7,
-                        letterSpacing: 0.75,
-                        color: Color(0XFF717171),
-                      ),
-                    ),
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return "Please Enter Your Password";
-                    //   }
-                    //   if (value.length < 8) {
-                    //     return 'Password must be at least 8 characters';
-                    //   }
-                    //   return "Wrong Password";
-                    // },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please Enter Your Password";
+                          }
+                          if (value.length < 8) {
+                            return 'Password must be at least 8 characters';
+                          }
+                          return null;
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
@@ -216,10 +227,9 @@ class _LoginViewState extends State<LoginView> {
             //SizedBox(height: 20),
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(context, RouteName.home);
-                // if (_formKey.currentState!.validate()) {
-                //   Navigator.pushReplacementNamed(context, RouteName.home);
-                // }
+                if (_formKey.currentState!.validate()) {
+                  Navigator.pushReplacementNamed(context, RouteName.home);
+                }
               },
               child: Container(
                 width: double.infinity,

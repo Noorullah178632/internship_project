@@ -1,5 +1,7 @@
+import 'package:first_app/firebase_options.dart';
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/Routes/routes_navigation.dart';
+import 'package:first_app/view_models/authentication_view_model.dart';
 import 'package:first_app/view_models/boarding_view_model.dart';
 import 'package:first_app/view_models/bottom_view_nav.dart';
 import 'package:first_app/view_models/Table_view_model.dart';
@@ -11,21 +13,27 @@ import 'package:first_app/view_models/normal_model.dart';
 import 'package:first_app/view_models/offer_help_view_model.dart';
 import 'package:first_app/view_models/report_list_view_model.dart';
 import 'package:first_app/view_models/review_rating_management_view_model.dart';
-import 'package:first_app/view_models/splash_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
 import 'package:first_app/view_models/user_management_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  //make sure bindings are initialize
+  WidgetsFlutterBinding.ensureInitialized();
+  //for firebase
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //for hive
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => AuthenticationViewModel()),
         ChangeNotifierProvider(create: (_) => BottomNav()),
         ChangeNotifierProvider(create: (_) => SwitchViewModel()),
-        ChangeNotifierProvider(create: (_) => SplashViewModel()),
+
         ChangeNotifierProvider(create: (_) => NormalModel()),
         ChangeNotifierProvider(create: (_) => BoardingViewModel()),
         ChangeNotifierProvider(create: (_) => HeatMapViewModel()),
@@ -62,7 +70,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           //try to set the routing
-          initialRoute: RouteName.adminDashboard,
+          initialRoute: RouteName.signup,
 
           onGenerateRoute: AppRoutes.RoutesNavigation,
           debugShowCheckedModeBanner: false,

@@ -1,7 +1,6 @@
+import 'package:first_app/services/splash_services.dart';
 import 'package:first_app/utils/appcolors.dart';
-import 'package:first_app/view_models/splash_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -11,10 +10,10 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  SplashServices splashServices = SplashServices();
   @override
   void initState() {
-    // TODO: implement initState
-    context.read<SplashViewModel>().start(context);
+    splashServices.isLoggin(context);
     super.initState();
   }
 

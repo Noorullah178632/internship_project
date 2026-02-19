@@ -96,31 +96,21 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                       ),
                     ),
                     //gives some validation for the textfield
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return "Please Enter Your Email";
-                    //   }
-                    //   if (!value.endsWith("@gmail.com")) {
-                    //     return "Gmail should be Specific";
-                    //   }
-                    //   //get the part before @
-
-                    //   String username = value.split("@")[0];
-
-                    //   if (username.length < 8) {
-                    //     return "User name must be atleast 8 characters";
-                    //   }
-                    //   return null;
-                    // },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please Enter Your Email";
+                      }
+                      return null;
+                    },
                   ),
                 ],
               ),
             ),
             //SizedBox(height: 20),
             GestureDetector(
-              // onTap: () {
-              //   if (_formkey.currentState!.validate()) {}
-              // },
+              onTap: () {
+                if (_formkey.currentState!.validate()) {}
+              },
               child: Container(
                 width: double.infinity,
                 height: 36,
