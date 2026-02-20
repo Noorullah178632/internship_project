@@ -287,8 +287,8 @@ class _SignupViewState extends State<SignupView> {
                               },
                               icon: Icon(
                                 mv.isvisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
                               ),
                             ),
                             //for borders
@@ -386,7 +386,10 @@ class _SignupViewState extends State<SignupView> {
               GestureDetector(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.pushReplacementNamed(context, RouteName.home);
+                    Navigator.pushReplacementNamed(
+                      context,
+                      RouteName.adminDashboard,
+                    );
                   }
                 },
                 child: Container(

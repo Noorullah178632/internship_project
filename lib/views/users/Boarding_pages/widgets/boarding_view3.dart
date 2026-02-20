@@ -72,7 +72,7 @@ class BoardingView3 extends StatelessWidget {
         SizedBox(height: 20),
         GestureDetector(
           onTap: () {
-            Navigator.pushReplacementNamed(context, RouteName.login);
+            Navigator.pushReplacementNamed(context, RouteName.flowOfScreens);
           },
           child: Container(
             width: 340,

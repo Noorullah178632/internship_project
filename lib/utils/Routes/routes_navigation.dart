@@ -10,6 +10,7 @@ import 'package:first_app/views/creater/service_listing_management_view.dart';
 import 'package:first_app/views/creater/service_provider_notification.dart';
 import 'package:first_app/views/creater/user_management_view.dart';
 import 'package:first_app/views/dummyclass_view.dart';
+import 'package:first_app/views/flowscreen_view.dart';
 import 'package:first_app/views/users/about_view.dart';
 import 'package:first_app/views/users/Boarding_pages/boarding_view.dart';
 import 'package:first_app/views/users/chatting/chatting_view.dart';
@@ -24,7 +25,8 @@ import 'package:first_app/views/users/login_view.dart';
 import 'package:first_app/views/users/offileData/offline_data_view.dart';
 import 'package:first_app/views/users/reset_password_view.dart';
 import 'package:first_app/views/users/show_tutorial_view.dart';
-import 'package:first_app/views/users/signup_view.dart';
+import 'package:first_app/views/users/signup_admin_view.dart';
+import 'package:first_app/views/users/signup_user_view.dart';
 import 'package:first_app/views/users/splash_view.dart';
 
 import 'package:flutter/material.dart';
@@ -75,6 +77,10 @@ class AppRoutes {
 
       case RouteName.splashScreen:
         return MaterialPageRoute(builder: (_) => SplashView());
+      case RouteName.flowOfScreens:
+        return MaterialPageRoute(builder: (_) => FlowscreenView());
+      case RouteName.signUpUser:
+        return MaterialPageRoute(builder: (_) => SignupUserView());
       //admin Routes
       case RouteName.adminDashboard:
         return MaterialPageRoute(builder: (_) => AdminDashboardView());

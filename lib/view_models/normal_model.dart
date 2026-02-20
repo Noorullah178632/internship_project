@@ -9,7 +9,7 @@ class NormalModel extends ChangeNotifier {
   }
 
   //for visibility icon in password
-  bool isvisible = false;
+  bool isvisible = true;
   void setvisibility() {
     isvisible = !isvisible;
     notifyListeners();

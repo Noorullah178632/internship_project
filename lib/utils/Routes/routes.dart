@@ -15,6 +15,9 @@ class RouteName {
   static const String signup = "/signupScreen";
   static const String resetPassword = "/resetPassword";
   static const String communityCare = "/communityCare";
+  static const String signUpUser = "/signUpUser";
+  //flow to user or admin
+  static const String flowOfScreens = "/flowOfScreen";
   //admin screens
   static const String adminDashboard = "/adminDashBoard";
   static const String drawerAdmin = "/drawerAdmin";
