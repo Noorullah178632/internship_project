@@ -38,6 +38,7 @@ class _SignupUserViewState extends State<SignupUserView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 70,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Appcolors.primarColor,
@@ -287,7 +288,33 @@ class _SignupUserViewState extends State<SignupUserView> {
                   ],
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "sign up here  ",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
 
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteName.login);
+                    },
+                    child: Text(
+                      "already have account",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Consumer<NormalModel>(
                 builder: (build, myModel, child) {
                   return CheckboxListTile(

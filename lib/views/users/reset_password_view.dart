@@ -1,5 +1,8 @@
+import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/appcolors.dart';
+import 'package:first_app/view_models/firebaseServices_viewModels/authentication_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});
@@ -107,34 +110,75 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               ),
             ),
             //SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                if (_formkey.currentState!.validate()) {}
-              },
-              child: Container(
-                width: double.infinity,
-                height: 36,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Appcolors.primarColor,
-                ),
-                child: Center(
-                  child: Text(
-                    "Reset Password",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      height: 1.4,
-                      letterSpacing: 0.75,
-                      color: Colors.white,
+            Consumer<AuthenticationViewModel>(
+              builder: (context, vm, child) {
+                return GestureDetector(
+                  onTap: () async {
+                    if (_formkey.currentState!.validate()) {
+                      final success = await vm.forgetPassword(
+                        emailController.text.toString(),
+                      );
+                      showAuthSnackBar(
+                        success ? "Successfully Send Email" : vm.errorMessage,
+                        success,
+                        () {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            RouteName.login,
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Appcolors.primarColor,
+                    ),
+                    child: Center(
+                      child: vm.isLoading
+                          ? CircularProgressIndicator(color: Colors.white)
+                          : Text(
+                              "Reset Password",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.4,
+                                letterSpacing: 0.75,
+                                color: Colors.white,
+                              ),
+                            ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),
       ),
     );
+  }
+
+  //show snackbar for reset password
+  void showAuthSnackBar(
+    String? message,
+    bool success,
+    VoidCallback? onsuccess,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message ??
+              (success ? "Successfully send email" : "Something went wrong"),
+        ),
+        backgroundColor: success ? Colors.green : Colors.red,
+        duration: Duration(seconds: 3),
+      ),
+    );
+    if (success && onsuccess != null) {
+      onsuccess();
+    }
   }
 }

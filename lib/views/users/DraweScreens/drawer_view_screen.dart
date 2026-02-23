@@ -1,7 +1,9 @@
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/utils/Routes/routes.dart';
+import 'package:first_app/view_models/firebaseServices_viewModels/authentication_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
 import 'package:first_app/views/users/DraweScreens/drawer_widget.dart';
+import 'package:first_app/views/users/homescreens/homescreens.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -228,13 +230,87 @@ class _MydrawerState extends State<Mydrawer> {
             routeName: RouteName.home,
           ),
           SizedBox(height: 15),
-          CustomizeContainer(
-            customizeText: "Login",
-            customizeImage: "assets/images/icons/login.png",
-            routeName: RouteName.login,
+          GestureDetector(
+            onTap: () {
+              dialogShow(context);
+            },
+            child: Container(
+              height: 35,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Color(0XFF5E5E5E), width: 0.3),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    Image(
+                      image: AssetImage("assets/images/icons/login.png"),
+                      width: 25,
+                      height: 25,
+                    ),
+                    SizedBox(width: 4),
+                    Text(
+                      "Logout",
+                      style: TextStyle(
+                        color: Appcolors.primarColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        letterSpacing: 1,
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
+    );
+  }
+
+  //show dialog
+  Future<bool?> dialogShow(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text("You Want to Log out ?"),
+          actions: [
+            Consumer<AuthenticationViewModel>(
+              builder: (context, vm, child) {
+                return ElevatedButton(
+                  onPressed: () async {
+                    await vm.signOut();
+                    // show snackbar first
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Successfully logged out")),
+                    );
+                    // close the dialog
+                    Navigator.pop(context);
+
+                    // navigate to sign up screen
+                    Navigator.pushReplacementNamed(
+                      context,
+                      RouteName.signUpUser,
+                    );
+                  },
+                  child: Text("Yes"),
+                );
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("No"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/appcolors.dart';
+import 'package:first_app/view_models/firebaseServices_viewModels/authentication_view_model.dart';
 import 'package:first_app/view_models/normal_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SignupView extends StatefulWidget {
@@ -37,6 +39,7 @@ class _SignupViewState extends State<SignupView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 70,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Appcolors.primarColor,
@@ -64,8 +67,8 @@ class _SignupViewState extends State<SignupView> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                width: 149,
-                height: 52,
+                width: 149.w,
+                height: 52.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border(
@@ -78,8 +81,8 @@ class _SignupViewState extends State<SignupView> {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.normal,
-                      fontSize: 20,
-                      height: 1.6,
+                      fontSize: 20.sp,
+                      height: 1.6.h,
                       letterSpacing: 1,
                       color: Appcolors.primarColor,
                     ),
@@ -106,7 +109,7 @@ class _SignupViewState extends State<SignupView> {
                         // 2:
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            width: 0.5,
+                            width: 0.5.w,
                             color: Color(0XFFAEAEAE),
                           ),
                         ),
@@ -120,7 +123,7 @@ class _SignupViewState extends State<SignupView> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
-                            fontSize: 16,
+                            fontSize: 16.sp,
                             height: 1.7,
                             letterSpacing: 0.75,
                             color: Color(0XFFAEAEAE),
@@ -148,75 +151,7 @@ class _SignupViewState extends State<SignupView> {
                         return null;
                       },
                     ),
-                    //PHONE section
-                    TextFormField(
-                      controller: phoneController,
-                      textInputAction: TextInputAction.newline,
-                      keyboardType: TextInputType.number,
-                      //icon at last
-                      decoration: InputDecoration(
-                        //for borders
-                        //   1:
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0XFFAEAEAE),
-                          ),
-                        ),
-                        // 2:
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 0.5,
-                            color: Color(0XFFAEAEAE),
-                          ),
-                        ),
-                        //3:
-                        errorBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 1, color: Colors.red),
-                        ),
-                        //text to label
-                        label: Text(
-                          "PHONE",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 16,
-                            height: 1.7,
-                            letterSpacing: 0.75,
-                            color: Color(0XFFAEAEAE),
-                          ),
-                        ),
-                        //hint text
-                        hintText: "+923254415796",
 
-                        hintStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          height: 1.7,
-                          letterSpacing: 0.75,
-                          color: Color(0XFF717171),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Phone number is required';
-                        }
-
-                        // This Regex handles:
-                        // 1. +923... (Total 13 chars)
-                        // 2. 03... (Total 11 chars)
-                        // 3. 3... (Total 10 chars)
-                        String pattern = r'^((\+92)|(0)|())3[0-9]{9}$';
-                        RegExp regExp = RegExp(pattern);
-
-                        if (!regExp.hasMatch(value)) {
-                          return 'Enter a valid number (e.g., +923xx or 03xx)';
-                        }
-
-                        return null;
-                      },
-                    ),
                     //emailField
                     TextFormField(
                       controller: emailController,
@@ -383,35 +318,57 @@ class _SignupViewState extends State<SignupView> {
                   );
                 },
               ),
-              GestureDetector(
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      RouteName.adminDashboard,
-                    );
-                  }
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Appcolors.primarColor,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "SIGNUP",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        height: 1.4,
-                        letterSpacing: 0.75,
-                        color: Colors.white,
+              Consumer<AuthenticationViewModel>(
+                builder: (context, vm, child) {
+                  return GestureDetector(
+                    onTap: () async {
+                      if (_formKey.currentState!.validate()) {
+                        final success = await vm
+                            .signUp(
+                              emailController.text.toString(),
+                              passwordController.text.toString(),
+                            )
+                            .then((value) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Colors.blue,
+                                  content: Text("Successfully Sign up "),
+                                ),
+                              );
+                            })
+                            .then((val) {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                RouteName.adminDashboard,
+                              );
+                            });
+                      }
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10.r),
+                      width: double.infinity,
+                      // height: 36.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Appcolors.primarColor,
+                      ),
+                      child: Center(
+                        child: vm.isLoading
+                            ? CircularProgressIndicator(color: Colors.white)
+                            : Text(
+                                "SIGNUP",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12,
+                                  height: 1.4,
+                                  letterSpacing: 0.75,
+                                  color: Colors.white,
+                                ),
+                              ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ],
           ),
@@ -419,4 +376,6 @@ class _SignupViewState extends State<SignupView> {
       ),
     );
   }
+
+  //snackBar for authentication
 }

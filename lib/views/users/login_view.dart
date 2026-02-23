@@ -1,7 +1,9 @@
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/appcolors.dart';
+import 'package:first_app/view_models/firebaseServices_viewModels/authentication_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -135,7 +137,10 @@ class _LoginViewState extends State<LoginView> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Please Enter Your Email";
+                      } else if (!value.endsWith("@gmail.com")) {
+                        return "Please Enter Valid Email";
                       }
+
                       return null;
 
                       // //get the part before @
@@ -213,9 +218,7 @@ class _LoginViewState extends State<LoginView> {
                           if (value == null || value.isEmpty) {
                             return "Please Enter Your Password";
                           }
-                          if (value.length < 8) {
-                            return 'Password must be at least 8 characters';
-                          }
+
                           return null;
                         },
                       );
@@ -225,32 +228,54 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             //SizedBox(height: 20),
-            GestureDetector(
-              onTap: () {
-                if (_formKey.currentState!.validate()) {
-                  Navigator.pushReplacementNamed(context, RouteName.home);
-                }
-              },
-              child: Container(
-                width: double.infinity,
-                height: 36,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Appcolors.primarColor,
-                ),
-                child: Center(
-                  child: Text(
-                    "LOGIN",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      height: 1.4,
-                      letterSpacing: 0.75,
-                      color: Colors.white,
+            Consumer<AuthenticationViewModel>(
+              builder: (context, vm, child) {
+                return GestureDetector(
+                  onTap: () async {
+                    if (_formKey.currentState!.validate()) {
+                      final success = await vm.signIn(
+                        //message should be true or false
+                        emailController.text.toString(),
+                        passwordController.text.toString(),
+                      );
+                      showAuthSnackBar(
+                        success ? "Sign in Successfull" : vm.errorMessage,
+                        success,
+                        () {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            RouteName.home,
+                          );
+                        },
+                      );
+                      //  showAuthSnackBar();
+                      //  Navigator.pushReplacementNamed(context, RouteName.home);
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Appcolors.primarColor,
+                    ),
+                    child: Center(
+                      child: vm.isLoading
+                          ? CircularProgressIndicator(color: Colors.white)
+                          : Text(
+                              "LOGIN",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                height: 1.4,
+                                letterSpacing: 0.75,
+                                color: Colors.white,
+                              ),
+                            ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
             // SizedBox(height: 25),
             Container(
@@ -269,7 +294,7 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, RouteName.signup);
+                        Navigator.pushNamed(context, RouteName.signUpUser);
                       },
                       child: Text(
                         "SIGNUP",
@@ -308,5 +333,24 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  void showAuthSnackBar(
+    String? message,
+    bool success,
+    VoidCallback? onsuccess,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message ?? (success ? "Success" : "Something went wrong"),
+        ),
+        backgroundColor: success ? Colors.green : Colors.red,
+        duration: Duration(seconds: 3),
+      ),
+    );
+    if (success && onsuccess != null) {
+      onsuccess();
+    }
   }
 }
