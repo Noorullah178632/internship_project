@@ -97,7 +97,7 @@ class _SignupUserViewState extends State<SignupUserView> {
                     TextFormField(
                       controller: phoneController,
                       textInputAction: TextInputAction.newline,
-                      keyboardType: TextInputType.number,
+
                       //icon at last
                       decoration: InputDecoration(
                         //for borders
