@@ -1,3 +1,4 @@
+import 'package:first_app/services/shared_pref/shared_pref_service.dart';
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/view_models/firebaseServices_viewModels/authentication_view_model.dart';
@@ -295,8 +296,10 @@ class _MydrawerState extends State<Mydrawer> {
                     // navigate to sign up screen
                     Navigator.pushReplacementNamed(
                       context,
-                      RouteName.signUpUser,
-                    );
+                      RouteName.flowOfScreens,
+                    ).then((value) {
+                      SharedPrefService().clearUser();
+                    });
                   },
                   child: Text("Yes"),
                 );

@@ -1,3 +1,4 @@
+import 'package:first_app/services/shared_pref/shared_pref_service.dart';
 import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/utils/appcolors.dart';
 import 'package:first_app/view_models/firebaseServices_viewModels/authentication_view_model.dart';
@@ -350,27 +351,33 @@ class _SignupUserViewState extends State<SignupUserView> {
                     onTap: () async {
                       if (_formKey.currentState!.validate()) {
                         //it will return either true or false
-                        final success = await vm.signUp(
-                          emailController.text.toString(),
-                          passwordController.text.toString(),
-                        );
-                        showAuthSnackBar(
-                          success, //true or false
-                          success
-                              ? "Sign Up Successful!"
-                              : vm.errorMessage, //if false it will shows us error
-                          onSuccess: () {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              RouteName.home,
-                            );
-                          },
-                        );
+                        final success = await vm
+                            .signUp(
+                              emailController.text.toString(),
+                              passwordController.text.toString(),
+                            )
+                            .then((value) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Sign Up Successfull")),
+                              );
+                            })
+                            .then((value) {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                RouteName.home,
+                              ).then((value) {
+                                SharedPrefService().saveUser(
+                                  emailController.text.toString(),
+                                  passwordController.text.toString(),
+                                );
+                              });
+                            });
                       }
                     },
                     child: Container(
+                      padding: EdgeInsets.all(10.r),
                       width: double.infinity,
-                      height: 50.h,
+                      // height: 50.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Appcolors.primarColor,
