@@ -4,7 +4,6 @@ import 'package:first_app/utils/Routes/routes.dart';
 import 'package:first_app/view_models/firebaseServices_viewModels/authentication_view_model.dart';
 import 'package:first_app/view_models/switch_view_model.dart';
 import 'package:first_app/views/users/DraweScreens/drawer_widget.dart';
-import 'package:first_app/views/users/homescreens/homescreens.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
